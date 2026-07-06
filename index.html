@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ai-yoyo-tv 第一集｜Claude 的 3 種打開方式</title>
+<style>
+  :root{
+    --bg:#eef8f6; --bg2:#f7fcfb; --card:#ffffff; --card2:#eaf6f4; --line:#cfe6e2;
+    --ink:#143a3f; --muted:#5f7d82; --accent:#0d9488; --accent2:#0891b2;
+    --chat:#0f9d8f; --cowork:#0891b2; --code:#2f74c0; --warn:#b45309;
+    --radius:16px; --maxw:820px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:radial-gradient(1100px 560px at 50% -8%,#dff2ee 0,var(--bg) 45%,var(--bg2) 100%);
+    color:var(--ink);font-family:"PingFang TC","Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;
+    line-height:1.75;-webkit-font-smoothing:antialiased}
+  .progress{position:fixed;top:0;left:0;height:4px;width:0;z-index:99;
+    background:linear-gradient(90deg,var(--chat),var(--accent),var(--accent2));transition:width .1s}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px 100px}
+  /* hero */
+  .hero{text-align:center;padding:60px 20px 34px}
+  .badge{display:inline-block;font-size:13px;letter-spacing:2px;color:var(--accent);
+    background:#dff2ee;border:1px solid var(--line);border-radius:999px;padding:5px 14px;margin-bottom:20px;font-weight:600}
+  h1{font-size:clamp(26px,5vw,40px);margin:.2em 0;line-height:1.25;
+    background:linear-gradient(90deg,#0d5c5f,#0891b2);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--muted);max-width:560px;margin:14px auto 0;font-size:15px}
+  .keyline{margin:30px auto 0;max-width:640px;background:linear-gradient(120deg,#e2f4f0,#dcf0f4);
+    border:1px solid var(--line);border-radius:var(--radius);padding:16px 20px;font-size:clamp(15px,2.4vw,19px);font-weight:700;color:var(--ink)}
+  .keyline b{color:var(--accent)}
+  .src-note{font-size:13px;color:var(--muted);max-width:600px;margin:22px auto 0;
+    border-left:3px solid var(--accent);text-align:left;padding:4px 14px;background:#f0f9f7;border-radius:0 8px 8px 0}
+  .src-note b{color:var(--accent)}
+  /* tabs */
+  .tabs{display:flex;gap:8px;margin:14px 0 0;flex-wrap:wrap;justify-content:center}
+  .tab{flex:1;min-width:150px;cursor:pointer;border:1px solid var(--line);background:var(--card);
+    border-radius:14px;padding:14px 12px;text-align:center;transition:.18s;user-select:none;box-shadow:0 2px 8px rgba(13,148,136,.05)}
+  .tab:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(13,148,136,.12)}
+  .tab .n{font-size:22px}
+  .tab .t{font-weight:700;margin-top:4px;font-size:15px}
+  .tab .s{font-size:12px;color:var(--muted)}
+  .tab[data-k="1"].on{border-color:var(--chat);box-shadow:0 0 0 2px rgba(15,157,143,.25)}
+  .tab[data-k="2"].on{border-color:var(--cowork);box-shadow:0 0 0 2px rgba(8,145,178,.25)}
+  .tab[data-k="3"].on{border-color:var(--code);box-shadow:0 0 0 2px rgba(47,116,192,.25)}
+  .panel{display:none;margin-top:14px;background:var(--card);border:1px solid var(--line);
+    border-radius:var(--radius);padding:24px 24px 8px;animation:fade .3s;box-shadow:0 4px 20px rgba(13,148,136,.06)}
+  .panel.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .ptag{display:inline-block;font-size:12px;padding:3px 10px;border-radius:999px;margin-bottom:6px;font-weight:600}
+  .p1 .ptag{background:#dcf5f0;color:var(--chat)}
+  .p2 .ptag{background:#d8eef6;color:var(--cowork)}
+  .p3 .ptag{background:#dde9f8;color:var(--code)}
+  .panel h3{margin:.1em 0 .3em;font-size:20px}
+  .panel .lead{color:var(--muted);font-size:14px;margin-top:0}
+  ul.feat{list-style:none;padding:0;margin:14px 0 6px}
+  ul.feat li{position:relative;padding:10px 0 10px 30px;border-top:1px dashed var(--line)}
+  ul.feat li:before{content:"▹";position:absolute;left:6px;top:10px;color:var(--accent);font-weight:700}
+  ul.feat b{color:var(--ink)}
+  .callout{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:12px 0 18px;font-size:13.5px;color:var(--muted)}
+  .case{border-left:3px solid var(--code);background:#eaf2fb;padding:12px 16px;border-radius:0 10px 10px 0;margin:10px 0 4px;font-size:14px}
+  .case b{color:var(--code)}
+  /* section */
+  section{margin-top:48px}
+  h2.sec{font-size:22px;display:flex;align-items:center;gap:10px;margin-bottom:6px}
+  h2.sec .bar{width:6px;height:22px;border-radius:3px;background:linear-gradient(var(--accent),var(--accent2))}
+  .sec-sub{color:var(--muted);font-size:14px;margin:0 0 14px}
+  /* table */
+  .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 4px 20px rgba(13,148,136,.06)}
+  table{border-collapse:collapse;width:100%;min-width:520px;font-size:14px;background:var(--card)}
+  th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{background:var(--card2);font-size:13px;color:var(--muted);position:sticky;top:0}
+  thead th:nth-child(2){color:var(--cowork)}
+  thead th:nth-child(3){color:var(--code)}
+  tbody th{background:#f4faf9;color:var(--ink);font-weight:700;white-space:nowrap}
+  tr:last-child td,tr:last-child th{border-bottom:none}
+  td b{color:var(--accent)}
+  .warn{margin-top:16px;background:#fdf6ec;border:1px solid #f0d9b5;
+    border-radius:12px;padding:14px 16px;font-size:14px;color:#7a5216}
+  .warn b{color:var(--warn)}
+  /* skill */
+  .skillbox{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;box-shadow:0 4px 20px rgba(13,148,136,.06)}
+  .skillbox code{background:#e4f3f0;padding:1px 6px;border-radius:5px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .chip{font-family:ui-monospace,Menlo,monospace;font-size:13px;background:var(--card2);border:1px solid var(--line);
+    padding:5px 12px;border-radius:8px;color:var(--accent);font-weight:600}
+  .checks{list-style:none;padding:0;margin:16px 0 0}
+  .checks li{display:flex;align-items:center;gap:12px;padding:11px 14px;background:var(--card2);
+    border:1px solid var(--line);border-radius:10px;margin-bottom:8px;cursor:pointer;transition:.15s}
+  .checks li:hover{border-color:var(--accent)}
+  .box{width:20px;height:20px;border:2px solid var(--muted);border-radius:6px;flex:none;display:grid;place-items:center;transition:.15s}
+  .checks li.done .box{background:var(--chat);border-color:var(--chat)}
+  .checks li.done .box:after{content:"✓";color:#fff;font-weight:800;font-size:13px}
+  .checks li.done .lbl{color:var(--muted);text-decoration:line-through}
+  /* sources */
+  .srcs{display:grid;gap:8px}
+  .srcs a{display:flex;gap:10px;align-items:center;color:var(--ink);text-decoration:none;
+    background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14px;transition:.15s}
+  .srcs a:hover{border-color:var(--accent);transform:translateX(3px);background:#f4faf9}
+  .srcs .dot{color:var(--accent);font-weight:700}
+  .srcs .site{color:var(--muted);font-size:12px;margin-left:auto;white-space:nowrap}
+  /* poll */
+  .poll{background:linear-gradient(120deg,#e2f4f0,#dcf0f4);
+    border:1px solid var(--line);border-radius:20px;padding:26px 24px;text-align:center}
+  .poll h2{margin:.1em 0}
+  .poll p{color:var(--muted);font-size:14px;margin:.4em 0 18px}
+  .opts{display:grid;gap:10px;max-width:520px;margin:0 auto;text-align:left}
+  .opt{border:1px solid var(--line);background:var(--card);
+    border-radius:12px;padding:13px 16px;font-size:15px;transition:.15s;display:flex;justify-content:space-between;align-items:center}
+  .opt.static{cursor:default}
+  .opt.static:hover{border-color:var(--accent);transform:translateX(3px)}
+  .opt .vote{font-size:13px;font-weight:600;color:var(--accent);white-space:nowrap}
+  .slackcta{display:inline-flex;align-items:center;gap:10px;margin-top:20px;text-decoration:none;
+    background:linear-gradient(120deg,var(--accent),var(--accent2));color:#fff;font-weight:700;font-size:15px;
+    padding:14px 26px;border-radius:999px;box-shadow:0 6px 18px rgba(13,148,136,.28);transition:.18s}
+  .slackcta:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(13,148,136,.36)}
+  .slackcta .ico{font-size:18px}
+  footer{text-align:center;color:var(--muted);font-size:13px;margin-top:56px}
+</style>
+</head>
+<body>
+<div class="progress" id="prog"></div>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="badge">📺 ai-yoyo-tv ·【AI × 行銷知識交流站】</div>
+    <h1>第一集：Claude 的 3 種打開方式<br>SEO 編輯都用得到</h1>
+    <p class="sub">每月上架 2 集，本頁是我們的「知識庫」，每集完整版都收在這裡，隨時回頭參考。</p>
+    <div class="keyline">🔑 一句話記住三者差別<br>
+      chat 幫你<b>寫一篇</b> · Cowork 幫你<b>跑一批</b> · Code 幫你<b>顧一整站</b></div>
+    <div class="src-note">資料優先取自國外權威 SEO／AI-SEO 部落格（Ahrefs、Search Engine Land、Semrush），並扣合團隊正在導入的 <b>Cowork skill</b> 與 <b>Claude Code</b>。</div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs" id="tabs">
+    <div class="tab on" data-k="1"><div class="n">1️⃣</div><div class="t">Claude chat</div><div class="s">寫一篇</div></div>
+    <div class="tab" data-k="2"><div class="n">2️⃣</div><div class="t">Claude Cowork</div><div class="s">跑一批 · 導入中</div></div>
+    <div class="tab" data-k="3"><div class="n">3️⃣</div><div class="t">Claude Code</div><div class="s">顧一整站 · 導入中</div></div>
+  </div>
+
+  <!-- PANEL 1 -->
+  <div class="panel p1 on" data-k="1">
+    <span class="ptag">一次一篇</span>
+    <h3>隨身寫作＋改稿夥伴</h3>
+    <p class="lead">打開就能用的對話介面，適合「單篇、當下」的任務。</p>
+    <ul class="feat">
+      <li><b>改稿濾鏡：</b>貼一段稿，請它抓 AI 腔、贅字，順便調整整體語氣。</li>
+      <li><b>長文改寫：</b>千字以上的文章，也能維持前後語氣一致。</li>
+      <li><b>關鍵字分群＋搜尋意圖：</b>丟一串關鍵字，請它依搜尋意圖分類，再整理出文章架構。</li>
+      <li><b>E-E-A-T 體檢：</b>請它從「經驗、專業、權威、可信」角度檢查內容是否完整。</li>
+    </ul>
+  </div>
+
+  <!-- PANEL 2 -->
+  <div class="panel p2" data-k="2">
+    <span class="ptag">一次一批 · 團隊導入中</span>
+    <h3>不用寫程式的桌面 AI 助手</h3>
+    <p class="lead">Claude 的桌面版，能直接讀電腦裡的資料夾、操作檔案、產出成品，全程用中文操作，不需要寫程式。</p>
+    <div class="callout">Anthropic 官方把它定位成「給知識工作者的 Claude Code」。</div>
+    <ul class="feat">
+      <li><b>產架構（大綱）：</b>丟目標關鍵字＋10+ 篇競品連結，請它產出帶有 H 標籤的架構與每段要點。</li>
+      <li><b>抓用戶需求（搜尋意圖）：</b>貼上 SERP 前幾名或 People Also Ask，讓它整理「讀者真正想知道什麼、文章該回答哪些問題」。</li>
+      <li><b>出文章初稿：</b>架構確認後，把參考資料丟給它，就能產出符合團隊語氣的初稿，再由編輯精修。</li>
+      <li><b>定時任務：</b>例如每週整理 AI 趨勢、每月提醒發布下一集，都可以排程自動完成。</li>
+      <li><b>批次整理：</b>指定一個資料夾，就能批次改檔名、分類、去重、整理重點。</li>
+    </ul>
+  </div>
+
+  <!-- PANEL 3 -->
+  <div class="panel p3" data-k="3">
+    <span class="ptag">一次一整站 · 團隊導入中</span>
+    <h3>把整個內容庫的重複流程自動化</h3>
+    <p class="lead">雖然名字叫 Code，但目前（2026）已進化成「非工程師也能用的自動化執行層」。Search Engine Land 稱它為「SEO 指揮中心」，Semrush 則定義成「SEO 分析師」。</p>
+    <div class="case">案例：Ahrefs 內容總監 Ryan Law 分享，他用 <b>23 個 Skill</b> 串成 Claude Code Pipeline，只要 <b>6～12 分鐘</b>就能完成一篇可發布的 SEO 初稿。</div>
+    <ul class="feat">
+      <li><b>批次產架構＋用戶需求：</b>一次處理一批主題，直接結合 SERP 與 GSC 數據整理搜尋意圖，再依同一份 Brief 模板批次產出標準化架構。</li>
+      <li><b>可重跑的產稿流程：</b>把「研究 → 用戶需求 → 架構 → 初稿 → 稽核」串成一條 Pipeline，每次都能用同一套流程完成。</li>
+      <li><b>全站內容稽核：</b>一次掃描整個 Sitemap（上百個 URL），找出過時內容、內容缺口、內鏈問題、重複內容與品牌語氣不一致，最後整理出更新優先順序。</li>
+      <li><b>結合真實數據做決策：</b>串接 Google Search Console、Ahrefs 或 Semrush 匯出的資料，讓選題與改稿建議都有數據依據。</li>
+      <li><b>定期自動報表：</b>每月自動整理 GSC 成效報表，以及 AI 引用能見度追蹤。</li>
+    </ul>
+  </div>
+
+  <!-- COMPARE -->
+  <section>
+    <h2 class="sec"><span class="bar"></span>🆚 Cowork vs Code：差在哪、何時用哪個</h2>
+    <p class="sec-sub">同樣是自動化，選錯工具會事倍功半。一張表看懂該用哪個。</p>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>面向</th><th>Claude Cowork</th><th>Claude Code</th></tr></thead>
+        <tbody>
+          <tr><th>簡介</th><td>桌面小幫手，處理眼前這批檔案</td><td>建立 SEO 生產線，把整站流程自動化</td></tr>
+          <tr><th>範圍</th><td>單機、當下、一批檔案</td><td>整站／整個內容庫、可重複執行</td></tr>
+          <tr><th>門檻</th><td>全中文、圖形介面、幾乎不用設定</td><td>初次需建立 Skill、串接資料來源</td></tr>
+          <tr><th>資料來源</th><td>你電腦裡的資料夾與檔案</td><td>GSC、Ahrefs／Semrush、CSV、API</td></tr>
+          <tr><th>編輯應用</th><td>把一篇文章做好</td><td>把同一套流程套用到一整批主題<br><span style="color:var(--muted);font-size:12px">（研究 → 需求 → 架構 → 初稿 → 稽核 串成 pipeline）</span></td></tr>
+          <tr><th>誰先上手</th><td>每位編輯都能直接開始</td><td>團隊先建立流程，之後大家一起用</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- QA -->
+  <section>
+    <h2 class="sec"><span class="bar"></span>❓ 架構、用戶需求、文章初稿，也能自動產嗎？</h2>
+    <p class="sec-sub"><b style="color:var(--chat)">能，而且是編輯最有感的部分。</b>差別在「規模」——同樣三件事，Cowork 適合「這一篇」，Code 適合「整批主題」。</p>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>要產的東西</th><th>Cowork（一次一篇）</th><th>Code（一次一批／一整站）</th></tr></thead>
+        <tbody>
+          <tr><th>架構（大綱）</th><td>丟關鍵字＋競品連結，產出這一篇的 H2／H3 與每段要點</td><td>對一批主題套同一份 Brief 模板，批次產、架構標準一致</td></tr>
+          <tr><th>用戶需求（意圖）</th><td>貼 SERP 前幾名或 People Also Ask，讓它歸納讀者想知道什麼</td><td>直接接 GSC／SERP 數據，意圖分析有數據撐腰、不靠猜</td></tr>
+          <tr><th>文章初稿</th><td>架構定稿＋參考資料丟給它，一篇一篇出團隊語氣的初稿</td><td>把「研究 → 需求 → 架構 → 初稿 → 稽核」串成 pipeline，一鍵跑、品質一致</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="warn">⚠️ <b>提醒：</b>AI 負責出初稿與架構，<b>事實查證、E-E-A-T、法規用字仍要編輯把關</b>。工具加速產出，判斷還是人做。</div>
+  </section>
+
+  <!-- SKILL -->
+  <section>
+    <h2 class="sec"><span class="bar"></span>💡 補充：什麼是「Skill」？</h2>
+    <p class="sec-sub">我們正在導入的核心概念。</p>
+    <div class="skillbox">
+      <p style="margin-top:0">Ahrefs 的解釋很直白：Skill 就像一份<b>可以重複使用的工作 SOP</b>，把你每次都要交代的規則（語氣、格式、檢查清單）寫成一份 <code>SKILL.md</code>。之後只要用自然語言描述需求，Claude 就會自動套用，不需要每次重新貼 Prompt。</p>
+      <p>建立 Skill 也不用寫程式，透過官方 <b>Skill Creator</b> 就能一步步完成。除了我們編輯團隊正在不斷優化的 Skill，Claude Code 也內建不少常用 Skill：</p>
+      <div class="chips"><span class="chip">/batch</span><span class="chip">/debug</span><span class="chip">/loop</span><span class="chip">/simplify</span></div>
+      <p style="margin-bottom:6px;margin-top:22px">✅ <b>編輯後續可嘗試的基礎 Skill</b>（點一下打勾試試）</p>
+      <ul class="checks" id="checks">
+        <li><span class="box"></span><span class="lbl">改稿濾鏡：抓被動語態、AI 腔、贅字</span></li>
+        <li><span class="box"></span><span class="lbl">把內容簡報改寫成特定語氣</span></li>
+        <li><span class="box"></span><span class="lbl">用固定 QA 清單檢查一篇草稿</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SOURCES -->
+  <section>
+    <h2 class="sec"><span class="bar"></span>📎 參考資料</h2>
+    <div class="srcs">
+      <a href="https://ahrefs.com/blog/claude-skills/" target="_blank" rel="noopener"><span class="dot">▸</span>Claude Skills for SEO and Marketing<span class="site">Ahrefs</span></a>
+      <a href="https://ahrefs.com/blog/how-i-do-content-engineering-with-claude-code/" target="_blank" rel="noopener"><span class="dot">▸</span>How I Do Content Engineering with Claude Code<span class="site">Ahrefs</span></a>
+      <a href="https://searchengineland.com/claude-code-seo-work-470668" target="_blank" rel="noopener"><span class="dot">▸</span>How to turn Claude Code into your SEO command center<span class="site">Search Engine Land</span></a>
+      <a href="https://searchengineland.com/content-audit-workflows-claude-481099" target="_blank" rel="noopener"><span class="dot">▸</span>6 content audit workflows to build in Claude<span class="site">Search Engine Land</span></a>
+      <a href="https://www.semrush.com/blog/claude-code-seo/" target="_blank" rel="noopener"><span class="dot">▸</span>How to turn Claude Code into your SEO analyst (with Semrush data)<span class="site">Semrush</span></a>
+      <a href="https://www.anthropic.com/product/claude-cowork" target="_blank" rel="noopener"><span class="dot">▸</span>Claude Cowork<span class="site">Anthropic</span></a>
+    </div>
+  </section>
+
+  <!-- POLL -->
+  <section>
+    <div class="poll" id="poll">
+      <h2>🗳️ 下一集你最想看什麼？</h2>
+      <p>如果有一件編輯工作最想交給 AI，你最希望它先幫你處理哪一件？<br>
+        投票在 <b>#ai-yoyo-tv</b> 頻道進行——用對應的 <b>emoji 反應</b>投給你想看的主題，票數最高的成為下一集專題 ～</p>
+      <div class="opts" id="opts">
+        <div class="opt static"><span class="lbl">🪄 改稿濾鏡 Skill 實作</span><span class="vote">用 🪄 投票</span></div>
+        <div class="opt static"><span class="lbl">🔍 用戶需求 / 搜尋意圖分析</span><span class="vote">用 🔍 投票</span></div>
+        <div class="opt static"><span class="lbl">🏗️ 自動產架構與初稿</span><span class="vote">用 🏗️ 投票</span></div>
+        <div class="opt static"><span class="lbl">🩺 全站內容稽核</span><span class="vote">用 🩺 投票</span></div>
+      </div>
+      <a class="slackcta" href="https://wellyseo.slack.com/archives/C0BE8QB42P7" target="_blank" rel="noopener">
+        <span class="ico">💬</span> 到 #ai-yoyo-tv 投票 & 留言
+      </a>
+    </div>
+  </section>
+
+  <footer>ai-yoyo-tv · AI × 行銷知識交流站 · 第一集</footer>
+</div>
+
+<script>
+  const prog=document.getElementById('prog');
+  addEventListener('scroll',()=>{const h=document.documentElement;
+    const p=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;prog.style.width=p+'%';});
+
+  const tabs=[...document.querySelectorAll('.tab')];
+  const panels=[...document.querySelectorAll('.panel')];
+  tabs.forEach(t=>t.addEventListener('click',()=>{
+    const k=t.dataset.k;
+    tabs.forEach(x=>x.classList.toggle('on',x.dataset.k===k));
+    panels.forEach(p=>p.classList.toggle('on',p.dataset.k===k));
+  }));
+
+  document.querySelectorAll('#checks li').forEach(li=>
+    li.addEventListener('click',()=>li.classList.toggle('done')));
+</script>
+</body>
+</html>
