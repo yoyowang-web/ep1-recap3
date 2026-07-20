@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ai-yoyo-tv 第一集｜Claude 的 3 種打開方式</title>
+<title>ai-yoyo-tv 知識庫｜AI × 行銷知識交流站</title>
 <style>
   :root{
     --bg:#eef8f6; --bg2:#f7fcfb; --card:#ffffff; --card2:#eaf6f4; --line:#cfe6e2;
@@ -20,10 +20,10 @@
     background:linear-gradient(90deg,var(--chat),var(--accent),var(--accent2));transition:width .1s}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px 100px}
   /* hero */
-  .hero{text-align:center;padding:60px 20px 34px}
+  .hero{text-align:center;padding:56px 20px 20px}
   .badge{display:inline-block;font-size:13px;letter-spacing:2px;color:var(--accent);
     background:#dff2ee;border:1px solid var(--line);border-radius:999px;padding:5px 14px;margin-bottom:20px;font-weight:600}
-  h1{font-size:clamp(26px,5vw,40px);margin:.2em 0;line-height:1.25;
+  h1{font-size:clamp(24px,4.6vw,36px);margin:.2em 0;line-height:1.25;
     background:linear-gradient(90deg,#0d5c5f,#0891b2);-webkit-background-clip:text;background-clip:text;color:transparent}
   .sub{color:var(--muted);max-width:560px;margin:14px auto 0;font-size:15px}
   .keyline{margin:30px auto 0;max-width:640px;background:linear-gradient(120deg,#e2f4f0,#dcf0f4);
@@ -32,6 +32,23 @@
   .src-note{font-size:13px;color:var(--muted);max-width:600px;margin:22px auto 0;
     border-left:3px solid var(--accent);text-align:left;padding:4px 14px;background:#f0f9f7;border-radius:0 8px 8px 0}
   .src-note b{color:var(--accent)}
+  /* episode nav */
+  .epnav{display:flex;gap:10px;justify-content:center;margin:34px 0 8px;flex-wrap:wrap}
+  .epbtn{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:14px;
+    padding:12px 22px;text-align:left;transition:.18s;user-select:none;box-shadow:0 2px 8px rgba(13,148,136,.05);min-width:210px}
+  .epbtn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(13,148,136,.12)}
+  .epbtn .no{font-size:12px;font-weight:700;letter-spacing:1px;color:var(--muted)}
+  .epbtn .tt{font-weight:800;margin-top:2px;font-size:15px;color:var(--ink)}
+  .epbtn.on{border-color:var(--accent);box-shadow:0 0 0 2px rgba(13,148,136,.25);background:#f1fbf9}
+  .epbtn.on .no{color:var(--accent)}
+  .newpill{display:inline-block;font-size:10px;font-weight:800;color:#fff;background:var(--accent2);
+    border-radius:999px;padding:1px 7px;margin-left:6px;vertical-align:middle}
+  .episode{display:none;animation:fade .3s}
+  .episode.on{display:block}
+  .ephead{text-align:center;margin:26px 0 6px}
+  .ephead .epk{font-size:13px;letter-spacing:2px;color:var(--accent);font-weight:700}
+  .ephead h2{font-size:clamp(20px,3.6vw,27px);margin:.3em 0 .1em;line-height:1.35;color:var(--ink)}
+  .ephead .date{color:var(--muted);font-size:13px}
   /* tabs */
   .tabs{display:flex;gap:8px;margin:14px 0 0;flex-wrap:wrap;justify-content:center}
   .tab{flex:1;min-width:150px;cursor:pointer;border:1px solid var(--line);background:var(--card);
@@ -65,6 +82,44 @@
   h2.sec{font-size:22px;display:flex;align-items:center;gap:10px;margin-bottom:6px}
   h2.sec .bar{width:6px;height:22px;border-radius:3px;background:linear-gradient(var(--accent),var(--accent2))}
   .sec-sub{color:var(--muted);font-size:14px;margin:0 0 14px}
+  /* intro lead for ep2 */
+  .introlead{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 24px;box-shadow:0 4px 20px rgba(13,148,136,.06);margin-top:26px}
+  .introlead p{margin:.2em 0 .8em}
+  .introlead ul{margin:6px 0 6px;padding-left:20px;color:var(--ink)}
+  .introlead li{margin:4px 0}
+  .quote{border-left:3px solid var(--accent);background:#f0f9f7;padding:10px 16px;border-radius:0 8px 8px 0;
+    margin:14px 0;font-weight:700;color:var(--ink)}
+  /* direction cards */
+  .dircards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+  .dcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px;box-shadow:0 2px 10px rgba(13,148,136,.05)}
+  .dcard .dh{font-weight:800;font-size:15px;color:var(--accent);margin-bottom:4px}
+  .dcard p{margin:0;font-size:13px;color:var(--muted);line-height:1.6}
+  @media(max-width:620px){.dircards{grid-template-columns:1fr}}
+  /* pipeline flow */
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;justify-content:center;
+    background:linear-gradient(120deg,#e2f4f0,#dcf0f4);border:1px solid var(--line);border-radius:var(--radius);padding:18px 16px;margin-top:16px}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 15px;font-weight:700;font-size:13.5px;color:var(--ink);white-space:nowrap}
+  .flow .arr{color:var(--accent);font-weight:800}
+  /* skill cards */
+  .skillcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 24px;box-shadow:0 4px 20px rgba(13,148,136,.06);margin-top:16px}
+  .skillcard .sh{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+  .skillcard .num{width:34px;height:34px;flex:none;display:grid;place-items:center;border-radius:10px;
+    background:linear-gradient(120deg,var(--accent),var(--accent2));color:#fff;font-weight:800;font-size:16px}
+  .skillcard h3{margin:0;font-size:18px}
+  .qa{margin:12px 0}
+  .qa .q{font-weight:800;color:var(--accent);font-size:14px;margin:12px 0 2px;display:flex;gap:7px;align-items:baseline}
+  .qa .q .i{font-size:13px}
+  .qa p{margin:0;font-size:14px}
+  .qa ul{margin:6px 0;padding-left:20px}
+  .qa li{margin:3px 0;font-size:14px}
+  .reflink{display:inline-flex;gap:8px;align-items:center;margin-top:12px;text-decoration:none;
+    background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:9px 14px;font-size:13px;color:var(--ink);transition:.15s}
+  .reflink:hover{border-color:var(--accent);transform:translateX(3px)}
+  .reflink .dot{color:var(--accent);font-weight:700}
+  .reflink .site{color:var(--muted);margin-left:4px}
+  .tip{margin-top:12px;background:#f0f9f7;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;font-size:13.5px;color:var(--muted)}
   /* table */
   .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 4px 20px rgba(13,148,136,.06)}
   table{border-collapse:collapse;width:100%;min-width:520px;font-size:14px;background:var(--card)}
@@ -78,7 +133,7 @@
   .warn{margin-top:16px;background:#fdf6ec;border:1px solid #f0d9b5;
     border-radius:12px;padding:14px 16px;font-size:14px;color:#7a5216}
   .warn b{color:var(--warn)}
-  /* skill */
+  /* skill box (ep1) */
   .skillbox{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;box-shadow:0 4px 20px rgba(13,148,136,.06)}
   .skillbox code{background:#e4f3f0;padding:1px 6px;border-radius:5px}
   .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
@@ -124,165 +179,396 @@
 
   <div class="hero">
     <div class="badge">📺 ai-yoyo-tv ·【AI × 行銷知識交流站】</div>
-    <h1>第一集：Claude 的 3 種打開方式<br>SEO 編輯都用得到</h1>
+    <h1>ai-yoyo-tv 知識庫</h1>
     <p class="sub">每月上架 2 集，本頁是我們的「知識庫」，每集完整版都收在這裡，隨時回頭參考。</p>
+    <div class="src-note">資料優先取自國外權威 SEO／AI-SEO 部落格（Ahrefs、SE Ranking、Search Engine Land、Semrush）與 GitHub 高討論度 skill repo，並扣合團隊正在導入的 <b>Cowork skill</b> 與 <b>Claude Code</b>。</div>
+
+    <!-- EPISODE NAV -->
+    <div class="epnav" id="epnav">
+      <div class="epbtn" data-ep="1">
+        <div class="no">EP.01</div>
+        <div class="tt">Claude 的 3 種打開方式</div>
+      </div>
+      <div class="epbtn on" data-ep="2">
+        <div class="no">EP.02 <span class="newpill">NEW</span></div>
+        <div class="tt">SEO 編輯的第一批 Skill</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= EPISODE 1 ================= -->
+  <div class="episode" data-ep="1">
+
+    <div class="ephead">
+      <div class="epk">第一集</div>
+      <h2>Claude 的 3 種打開方式，SEO 編輯都用得到</h2>
+    </div>
+
     <div class="keyline">🔑 一句話記住三者差別<br>
       chat 幫你<b>寫一篇</b> · Cowork 幫你<b>跑一批</b> · Code 幫你<b>顧一整站</b></div>
-    <div class="src-note">資料優先取自國外權威 SEO／AI-SEO 部落格（Ahrefs、Search Engine Land、Semrush），並扣合團隊正在導入的 <b>Cowork skill</b> 與 <b>Claude Code</b>。</div>
-  </div>
 
-  <!-- TABS -->
-  <div class="tabs" id="tabs">
-    <div class="tab on" data-k="1"><div class="n">1️⃣</div><div class="t">Claude chat</div><div class="s">寫一篇</div></div>
-    <div class="tab" data-k="2"><div class="n">2️⃣</div><div class="t">Claude Cowork</div><div class="s">跑一批 · 導入中</div></div>
-    <div class="tab" data-k="3"><div class="n">3️⃣</div><div class="t">Claude Code</div><div class="s">顧一整站 · 導入中</div></div>
-  </div>
-
-  <!-- PANEL 1 -->
-  <div class="panel p1 on" data-k="1">
-    <span class="ptag">一次一篇</span>
-    <h3>隨身寫作＋改稿夥伴</h3>
-    <p class="lead">打開就能用的對話介面，適合「單篇、當下」的任務。</p>
-    <ul class="feat">
-      <li><b>改稿濾鏡：</b>貼一段稿，請它抓 AI 腔、贅字，順便調整整體語氣。</li>
-      <li><b>長文改寫：</b>千字以上的文章，也能維持前後語氣一致。</li>
-      <li><b>關鍵字分群＋搜尋意圖：</b>丟一串關鍵字，請它依搜尋意圖分類，再整理出文章架構。</li>
-      <li><b>E-E-A-T 體檢：</b>請它從「經驗、專業、權威、可信」角度檢查內容是否完整。</li>
-    </ul>
-  </div>
-
-  <!-- PANEL 2 -->
-  <div class="panel p2" data-k="2">
-    <span class="ptag">一次一批 · 團隊導入中</span>
-    <h3>不用寫程式的桌面 AI 助手</h3>
-    <p class="lead">Claude 的桌面版，能直接讀電腦裡的資料夾、操作檔案、產出成品，全程用中文操作，不需要寫程式。</p>
-    <div class="callout">Anthropic 官方把它定位成「給知識工作者的 Claude Code」。</div>
-    <ul class="feat">
-      <li><b>產架構（大綱）：</b>丟目標關鍵字＋10+ 篇競品連結，請它產出帶有 H 標籤的架構與每段要點。</li>
-      <li><b>抓用戶需求（搜尋意圖）：</b>貼上 SERP 前幾名或 People Also Ask，讓它整理「讀者真正想知道什麼、文章該回答哪些問題」。</li>
-      <li><b>出文章初稿：</b>架構確認後，把參考資料丟給它，就能產出符合團隊語氣的初稿，再由編輯精修。</li>
-      <li><b>定時任務：</b>例如每週整理 AI 趨勢、每月提醒發布下一集，都可以排程自動完成。</li>
-      <li><b>批次整理：</b>指定一個資料夾，就能批次改檔名、分類、去重、整理重點。</li>
-    </ul>
-  </div>
-
-  <!-- PANEL 3 -->
-  <div class="panel p3" data-k="3">
-    <span class="ptag">一次一整站 · 團隊導入中</span>
-    <h3>把整個內容庫的重複流程自動化</h3>
-    <p class="lead">雖然名字叫 Code，但目前（2026）已進化成「非工程師也能用的自動化執行層」。Search Engine Land 稱它為「SEO 指揮中心」，Semrush 則定義成「SEO 分析師」。</p>
-    <div class="case">案例：Ahrefs 內容總監 Ryan Law 分享，他用 <b>23 個 Skill</b> 串成 Claude Code Pipeline，只要 <b>6～12 分鐘</b>就能完成一篇可發布的 SEO 初稿。</div>
-    <ul class="feat">
-      <li><b>批次產架構＋用戶需求：</b>一次處理一批主題，直接結合 SERP 與 GSC 數據整理搜尋意圖，再依同一份 Brief 模板批次產出標準化架構。</li>
-      <li><b>可重跑的產稿流程：</b>把「研究 → 用戶需求 → 架構 → 初稿 → 稽核」串成一條 Pipeline，每次都能用同一套流程完成。</li>
-      <li><b>全站內容稽核：</b>一次掃描整個 Sitemap（上百個 URL），找出過時內容、內容缺口、內鏈問題、重複內容與品牌語氣不一致，最後整理出更新優先順序。</li>
-      <li><b>結合真實數據做決策：</b>串接 Google Search Console、Ahrefs 或 Semrush 匯出的資料，讓選題與改稿建議都有數據依據。</li>
-      <li><b>定期自動報表：</b>每月自動整理 GSC 成效報表，以及 AI 引用能見度追蹤。</li>
-    </ul>
-  </div>
-
-  <!-- COMPARE -->
-  <section>
-    <h2 class="sec"><span class="bar"></span>🆚 Cowork vs Code：差在哪、何時用哪個</h2>
-    <p class="sec-sub">同樣是自動化，選錯工具會事倍功半。一張表看懂該用哪個。</p>
-    <div class="tblwrap">
-      <table>
-        <thead><tr><th>面向</th><th>Claude Cowork</th><th>Claude Code</th></tr></thead>
-        <tbody>
-          <tr><th>簡介</th><td>桌面小幫手，處理眼前這批檔案</td><td>建立 SEO 生產線，把整站流程自動化</td></tr>
-          <tr><th>範圍</th><td>單機、當下、一批檔案</td><td>整站／整個內容庫、可重複執行</td></tr>
-          <tr><th>門檻</th><td>全中文、圖形介面、幾乎不用設定</td><td>初次需建立 Skill、串接資料來源</td></tr>
-          <tr><th>資料來源</th><td>你電腦裡的資料夾與檔案</td><td>GSC、Ahrefs／Semrush、CSV、API</td></tr>
-          <tr><th>編輯應用</th><td>把一篇文章做好</td><td>把同一套流程套用到一整批主題<br><span style="color:var(--muted);font-size:12px">（研究 → 需求 → 架構 → 初稿 → 稽核 串成 pipeline）</span></td></tr>
-          <tr><th>誰先上手</th><td>每位編輯都能直接開始</td><td>團隊先建立流程，之後大家一起用</td></tr>
-        </tbody>
-      </table>
+    <!-- TABS -->
+    <div class="tabs">
+      <div class="tab on" data-k="1"><div class="n">1️⃣</div><div class="t">Claude chat</div><div class="s">寫一篇</div></div>
+      <div class="tab" data-k="2"><div class="n">2️⃣</div><div class="t">Claude Cowork</div><div class="s">跑一批 · 導入中</div></div>
+      <div class="tab" data-k="3"><div class="n">3️⃣</div><div class="t">Claude Code</div><div class="s">顧一整站 · 導入中</div></div>
     </div>
-  </section>
 
-  <!-- QA -->
-  <section>
-    <h2 class="sec"><span class="bar"></span>❓ 架構、用戶需求、文章初稿，也能自動產嗎？</h2>
-    <p class="sec-sub"><b style="color:var(--chat)">能，而且是編輯最有感的部分。</b>差別在「規模」——同樣三件事，Cowork 適合「這一篇」，Code 適合「整批主題」。</p>
-    <div class="tblwrap">
-      <table>
-        <thead><tr><th>要產的東西</th><th>Cowork（一次一篇）</th><th>Code（一次一批／一整站）</th></tr></thead>
-        <tbody>
-          <tr><th>架構（大綱）</th><td>丟關鍵字＋競品連結，產出這一篇的 H2／H3 與每段要點</td><td>對一批主題套同一份 Brief 模板，批次產、架構標準一致</td></tr>
-          <tr><th>用戶需求（意圖）</th><td>貼 SERP 前幾名或 People Also Ask，讓它歸納讀者想知道什麼</td><td>直接接 GSC／SERP 數據，意圖分析有數據撐腰、不靠猜</td></tr>
-          <tr><th>文章初稿</th><td>架構定稿＋參考資料丟給它，一篇一篇出團隊語氣的初稿</td><td>把「研究 → 需求 → 架構 → 初稿 → 稽核」串成 pipeline，一鍵跑、品質一致</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="warn">⚠️ <b>提醒：</b>AI 負責出初稿與架構，<b>事實查證、E-E-A-T、法規用字仍要編輯把關</b>。工具加速產出，判斷還是人做。</div>
-  </section>
-
-  <!-- SKILL -->
-  <section>
-    <h2 class="sec"><span class="bar"></span>💡 補充：什麼是「Skill」？</h2>
-    <p class="sec-sub">我們正在導入的核心概念。</p>
-    <div class="skillbox">
-      <p style="margin-top:0">Ahrefs 的解釋很直白：Skill 就像一份<b>可以重複使用的工作 SOP</b>，把你每次都要交代的規則（語氣、格式、檢查清單）寫成一份 <code>SKILL.md</code>。之後只要用自然語言描述需求，Claude 就會自動套用，不需要每次重新貼 Prompt。</p>
-      <p>建立 Skill 也不用寫程式，透過官方 <b>Skill Creator</b> 就能一步步完成。除了我們編輯團隊正在不斷優化的 Skill，Claude Code 也內建不少常用 Skill：</p>
-      <div class="chips"><span class="chip">/batch</span><span class="chip">/debug</span><span class="chip">/loop</span><span class="chip">/simplify</span></div>
-      <p style="margin-bottom:6px;margin-top:22px">✅ <b>編輯後續可嘗試的基礎 Skill</b>（點一下打勾試試）</p>
-      <ul class="checks" id="checks">
-        <li><span class="box"></span><span class="lbl">改稿濾鏡：抓被動語態、AI 腔、贅字</span></li>
-        <li><span class="box"></span><span class="lbl">把內容簡報改寫成特定語氣</span></li>
-        <li><span class="box"></span><span class="lbl">用固定 QA 清單檢查一篇草稿</span></li>
+    <!-- PANEL 1 -->
+    <div class="panel p1 on" data-k="1">
+      <span class="ptag">一次一篇</span>
+      <h3>隨身寫作＋改稿夥伴</h3>
+      <p class="lead">打開就能用的對話介面，適合「單篇、當下」的任務。</p>
+      <ul class="feat">
+        <li><b>改稿濾鏡：</b>貼一段稿，請它抓 AI 腔、贅字，順便調整整體語氣。</li>
+        <li><b>長文改寫：</b>千字以上的文章，也能維持前後語氣一致。</li>
+        <li><b>關鍵字分群＋搜尋意圖：</b>丟一串關鍵字，請它依搜尋意圖分類，再整理出文章架構。</li>
+        <li><b>E-E-A-T 體檢：</b>請它從「經驗、專業、權威、可信」角度檢查內容是否完整。</li>
       </ul>
     </div>
-  </section>
 
-  <!-- SOURCES -->
-  <section>
-    <h2 class="sec"><span class="bar"></span>📎 參考資料</h2>
-    <div class="srcs">
-      <a href="https://ahrefs.com/blog/claude-skills/" target="_blank" rel="noopener"><span class="dot">▸</span>Claude Skills for SEO and Marketing<span class="site">Ahrefs</span></a>
-      <a href="https://ahrefs.com/blog/how-i-do-content-engineering-with-claude-code/" target="_blank" rel="noopener"><span class="dot">▸</span>How I Do Content Engineering with Claude Code<span class="site">Ahrefs</span></a>
-      <a href="https://searchengineland.com/claude-code-seo-work-470668" target="_blank" rel="noopener"><span class="dot">▸</span>How to turn Claude Code into your SEO command center<span class="site">Search Engine Land</span></a>
-      <a href="https://searchengineland.com/content-audit-workflows-claude-481099" target="_blank" rel="noopener"><span class="dot">▸</span>6 content audit workflows to build in Claude<span class="site">Search Engine Land</span></a>
-      <a href="https://www.semrush.com/blog/claude-code-seo/" target="_blank" rel="noopener"><span class="dot">▸</span>How to turn Claude Code into your SEO analyst (with Semrush data)<span class="site">Semrush</span></a>
-      <a href="https://www.anthropic.com/product/claude-cowork" target="_blank" rel="noopener"><span class="dot">▸</span>Claude Cowork<span class="site">Anthropic</span></a>
+    <!-- PANEL 2 -->
+    <div class="panel p2" data-k="2">
+      <span class="ptag">一次一批 · 團隊導入中</span>
+      <h3>不用寫程式的桌面 AI 助手</h3>
+      <p class="lead">Claude 的桌面版，能直接讀電腦裡的資料夾、操作檔案、產出成品，全程用中文操作，不需要寫程式。</p>
+      <div class="callout">Anthropic 官方把它定位成「給知識工作者的 Claude Code」。</div>
+      <ul class="feat">
+        <li><b>產架構（大綱）：</b>丟目標關鍵字＋10+ 篇競品連結，請它產出帶有 H 標籤的架構與每段要點。</li>
+        <li><b>抓用戶需求（搜尋意圖）：</b>貼上 SERP 前幾名或 People Also Ask，讓它整理「讀者真正想知道什麼、文章該回答哪些問題」。</li>
+        <li><b>出文章初稿：</b>架構確認後，把參考資料丟給它，就能產出符合團隊語氣的初稿，再由編輯精修。</li>
+        <li><b>定時任務：</b>例如每週整理 AI 趨勢、每月提醒發布下一集，都可以排程自動完成。</li>
+        <li><b>批次整理：</b>指定一個資料夾，就能批次改檔名、分類、去重、整理重點。</li>
+      </ul>
     </div>
-  </section>
 
-  <!-- POLL -->
+    <!-- PANEL 3 -->
+    <div class="panel p3" data-k="3">
+      <span class="ptag">一次一整站 · 團隊導入中</span>
+      <h3>把整個內容庫的重複流程自動化</h3>
+      <p class="lead">雖然名字叫 Code，但目前（2026）已進化成「非工程師也能用的自動化執行層」。Search Engine Land 稱它為「SEO 指揮中心」，Semrush 則定義成「SEO 分析師」。</p>
+      <div class="case">案例：Ahrefs 內容總監 Ryan Law 分享，他用 <b>23 個 Skill</b> 串成 Claude Code Pipeline，只要 <b>6～12 分鐘</b>就能完成一篇可發布的 SEO 初稿。</div>
+      <ul class="feat">
+        <li><b>批次產架構＋用戶需求：</b>一次處理一批主題，直接結合 SERP 與 GSC 數據整理搜尋意圖，再依同一份 Brief 模板批次產出標準化架構。</li>
+        <li><b>可重跑的產稿流程：</b>把「研究 → 用戶需求 → 架構 → 初稿 → 稽核」串成一條 Pipeline，每次都能用同一套流程完成。</li>
+        <li><b>全站內容稽核：</b>一次掃描整個 Sitemap（上百個 URL），找出過時內容、內容缺口、內鏈問題、重複內容與品牌語氣不一致，最後整理出更新優先順序。</li>
+        <li><b>結合真實數據做決策：</b>串接 Google Search Console、Ahrefs 或 Semrush 匯出的資料，讓選題與改稿建議都有數據依據。</li>
+        <li><b>定期自動報表：</b>每月自動整理 GSC 成效報表，以及 AI 引用能見度追蹤。</li>
+      </ul>
+    </div>
+
+    <!-- COMPARE -->
+    <section>
+      <h2 class="sec"><span class="bar"></span>🆚 Cowork vs Code：差在哪、何時用哪個</h2>
+      <p class="sec-sub">同樣是自動化，選錯工具會事倍功半。一張表看懂該用哪個。</p>
+      <div class="tblwrap">
+        <table>
+          <thead><tr><th>面向</th><th>Claude Cowork</th><th>Claude Code</th></tr></thead>
+          <tbody>
+            <tr><th>簡介</th><td>桌面小幫手，處理眼前這批檔案</td><td>建立 SEO 生產線，把整站流程自動化</td></tr>
+            <tr><th>範圍</th><td>單機、當下、一批檔案</td><td>整站／整個內容庫、可重複執行</td></tr>
+            <tr><th>門檻</th><td>全中文、圖形介面、幾乎不用設定</td><td>初次需建立 Skill、串接資料來源</td></tr>
+            <tr><th>資料來源</th><td>你電腦裡的資料夾與檔案</td><td>GSC、Ahrefs／Semrush、CSV、API</td></tr>
+            <tr><th>編輯應用</th><td>把一篇文章做好</td><td>把同一套流程套用到一整批主題<br><span style="color:var(--muted);font-size:12px">（研究 → 需求 → 架構 → 初稿 → 稽核 串成 pipeline）</span></td></tr>
+            <tr><th>誰先上手</th><td>每位編輯都能直接開始</td><td>團隊先建立流程，之後大家一起用</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- QA -->
+    <section>
+      <h2 class="sec"><span class="bar"></span>❓ 架構、用戶需求、文章初稿，也能自動產嗎？</h2>
+      <p class="sec-sub"><b style="color:var(--chat)">能，而且是編輯最有感的部分。</b>差別在「規模」——同樣三件事，Cowork 適合「這一篇」，Code 適合「整批主題」。</p>
+      <div class="tblwrap">
+        <table>
+          <thead><tr><th>要產的東西</th><th>Cowork（一次一篇）</th><th>Code（一次一批／一整站）</th></tr></thead>
+          <tbody>
+            <tr><th>架構（大綱）</th><td>丟關鍵字＋競品連結，產出這一篇的 H2／H3 與每段要點</td><td>對一批主題套同一份 Brief 模板，批次產、架構標準一致</td></tr>
+            <tr><th>用戶需求（意圖）</th><td>貼 SERP 前幾名或 People Also Ask，讓它歸納讀者想知道什麼</td><td>直接接 GSC／SERP 數據，意圖分析有數據撐腰、不靠猜</td></tr>
+            <tr><th>文章初稿</th><td>架構定稿＋參考資料丟給它，一篇一篇出團隊語氣的初稿</td><td>把「研究 → 需求 → 架構 → 初稿 → 稽核」串成 pipeline，一鍵跑、品質一致</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="warn">⚠️ <b>提醒：</b>AI 負責出初稿與架構，<b>事實查證、E-E-A-T、法規用字仍要編輯把關</b>。工具加速產出，判斷還是人做。</div>
+    </section>
+
+    <!-- SKILL -->
+    <section>
+      <h2 class="sec"><span class="bar"></span>💡 補充：什麼是「Skill」？</h2>
+      <p class="sec-sub">我們正在導入的核心概念。</p>
+      <div class="skillbox">
+        <p style="margin-top:0">Ahrefs 的解釋很直白：Skill 就像一份<b>可以重複使用的工作 SOP</b>，把你每次都要交代的規則（語氣、格式、檢查清單）寫成一份 <code>SKILL.md</code>。之後只要用自然語言描述需求，Claude 就會自動套用，不需要每次重新貼 Prompt。</p>
+        <p>建立 Skill 也不用寫程式，透過官方 <b>Skill Creator</b> 就能一步步完成。除了我們編輯團隊正在不斷優化的 Skill，Claude Code 也內建不少常用 Skill：</p>
+        <div class="chips"><span class="chip">/batch</span><span class="chip">/debug</span><span class="chip">/loop</span><span class="chip">/simplify</span></div>
+        <p style="margin-bottom:6px;margin-top:22px">✅ <b>編輯後續可嘗試的基礎 Skill</b>（點一下打勾試試）</p>
+        <ul class="checks">
+          <li><span class="box"></span><span class="lbl">改稿濾鏡：抓被動語態、AI 腔、贅字</span></li>
+          <li><span class="box"></span><span class="lbl">把內容簡報改寫成特定語氣</span></li>
+          <li><span class="box"></span><span class="lbl">用固定 QA 清單檢查一篇草稿</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SOURCES -->
+    <section>
+      <h2 class="sec"><span class="bar"></span>📎 參考資料</h2>
+      <div class="srcs">
+        <a href="https://ahrefs.com/blog/claude-skills/" target="_blank" rel="noopener"><span class="dot">▸</span>Claude Skills for SEO and Marketing<span class="site">Ahrefs</span></a>
+        <a href="https://ahrefs.com/blog/how-i-do-content-engineering-with-claude-code/" target="_blank" rel="noopener"><span class="dot">▸</span>How I Do Content Engineering with Claude Code<span class="site">Ahrefs</span></a>
+        <a href="https://searchengineland.com/claude-code-seo-work-470668" target="_blank" rel="noopener"><span class="dot">▸</span>How to turn Claude Code into your SEO command center<span class="site">Search Engine Land</span></a>
+        <a href="https://searchengineland.com/content-audit-workflows-claude-481099" target="_blank" rel="noopener"><span class="dot">▸</span>6 content audit workflows to build in Claude<span class="site">Search Engine Land</span></a>
+        <a href="https://www.semrush.com/blog/claude-code-seo/" target="_blank" rel="noopener"><span class="dot">▸</span>How to turn Claude Code into your SEO analyst (with Semrush data)<span class="site">Semrush</span></a>
+        <a href="https://www.anthropic.com/product/claude-cowork" target="_blank" rel="noopener"><span class="dot">▸</span>Claude Cowork<span class="site">Anthropic</span></a>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= EPISODE 2 ================= -->
+  <div class="episode on" data-ep="2">
+
+    <div class="ephead">
+      <div class="epk">第二集</div>
+      <h2>SEO 編輯的第一批 Skill：把每次重講的規則，變成自動觸發的 playbook</h2>
+      <div class="date">🗓️ 7 月 20 日上架</div>
+    </div>
+
+    <div class="introlead">
+      <p>上集聊完 Claude 的 3 種打開方式後，這集想跟大家分享一個更貼近日常工作的應用：如果 AI 已經可以幫我們寫文章，那我們後續真正要訓練的，絕不能僅限於「怎麼下更長的 Prompt」，更要學會<b>「把自己的工作方法變成 Skill」</b>。</p>
+      <p>因為很多時候，我們不是不會寫，而是每天都在重複講同樣的事：</p>
+      <ul>
+        <li>「這篇要先拆搜尋意圖」</li>
+        <li>「H2 不要只是列關鍵字，要回答使用者問題」</li>
+        <li>「不要有 AI 味」</li>
+        <li>「這邊要補 E-E-A-T」</li>
+        <li>「GEO 要讓 AI 找得到重點」</li>
+      </ul>
+      <p>講久了會發現……欸？這些其實就是我們自己的 SOP 啊 😂 而 Skill 的概念，就是把這些「腦袋裡的經驗值」整理成一套可以重複使用的工作流程。</p>
+    </div>
+
+    <!-- TREND -->
+    <section>
+      <h2 class="sec"><span class="bar"></span>📈 先看趨勢：2026 年 SEO 已經不是只有「排名」了</h2>
+      <p class="sec-sub">如果最近覺得 SEO 工作變複雜、每篇文章都多了很多要求，其實不是錯覺。國內外 SEO 圈普遍認為，SEO 正在拆成 3 個方向。</p>
+      <div class="dircards">
+        <div class="dcard">
+          <div class="dh">傳統排名</div>
+          <p>讓文章在 Google 搜尋結果中排名更前面。這是我們一直在做的事。</p>
+        </div>
+        <div class="dcard">
+          <div class="dh">GEO 生成引擎優化</div>
+          <p>讓 AI 回答問題時，願意引用你的內容。例如使用者問 ChatGPT「眼下細紋怎麼改善？」，AI 引用你的文章當來源，就是 GEO 成功。</p>
+        </div>
+        <div class="dcard">
+          <div class="dh">AEO 答案引擎優化</div>
+          <p>讓內容更容易出現在 AI 答案區，例如 ChatGPT、Perplexity、Google AI Overviews 直接整理答案的地方。</p>
+        </div>
+      </div>
+      <div class="callout">簡單說：以前我們寫文章是服務「搜尋的人」；現在要同時服務 👤 人類使用者 與 🤖 AI 助理。Skill 的價值，就是幫我們把 SEO、GEO、AEO 這些要求變成固定流程。</div>
+      <div class="quote">💬 網路上有很多號稱「SEO 全自動化、一鍵完成」的超完整 Skill 包，但 Ahrefs 和 SE Ranking 給了同一個忠告：對多數團隊而言，<b style="color:var(--accent)">4～6 個 skill 就夠了</b>。太多反而會規則打架、QA 變複雜、流程變慢。</div>
+    </section>
+
+    <!-- PIPELINE -->
+    <section>
+      <h2 class="sec"><span class="bar"></span>🧭 一套符合我們產線的 6 個 Skill 方向</h2>
+      <p class="sec-sub">剛好對應 PM 給關鍵字後，編輯會經歷的每一步。</p>
+      <div class="flow">
+        <span class="step">1 用戶需求分析</span><span class="arr">→</span>
+        <span class="step">2 架構</span><span class="arr">→</span>
+        <span class="step">3 產文章</span><span class="arr">→</span>
+        <span class="step">4 去 AI 味</span><span class="arr">→</span>
+        <span class="step">5 E-E-A-T 把關</span><span class="arr">→</span>
+        <span class="step">6 GEO 優化</span>
+      </div>
+
+      <!-- SKILL 1 -->
+      <div class="skillcard">
+        <div class="sh"><div class="num">1</div><h3>產用戶需求分析：搜尋意圖 Skill</h3></div>
+        <div class="qa">
+          <div class="q"><span class="i">🎯</span>解決什麼問題？</div>
+          <p>PM 給了關鍵字，但要自己把「使用者到底想知道什麼、卡在哪、有什麼疑慮」拆清楚，很花時間又容易漏。</p>
+          <div class="q"><span class="i">🤖</span>Skill 可以怎麼幫忙？</div>
+          <p>把關鍵字丟給它，先整理主要搜尋目的、使用者痛點、常見疑問、競品沒回答的資訊缺口，直接變成後面架構的素材。</p>
+          <div class="q"><span class="i">🛠️</span>我們可以怎麼做自己的 Skill？</div>
+          <p>把你平常「拆一個關鍵字會問自己的那幾件事」寫成固定清單（主要意圖、各階段疑問、常見誤解、對手沒答到的），讓 AI 每次固定幫你跑一次。</p>
+        </div>
+        <a class="reflink" href="https://infranodus.com/skills/seo" target="_blank" rel="noopener"><span class="dot">▸</span>Search Intent &amp; Content Gap Analysis skill<span class="site">InfraNodus</span></a>
+        <div class="tip">📌 這一步做扎實，後面架構和文章都會又快又準。</div>
+      </div>
+
+      <!-- SKILL 2 -->
+      <div class="skillcard">
+        <div class="sh"><div class="num">2</div><h3>產架構：內容規劃 Skill</h3></div>
+        <div class="qa">
+          <div class="q"><span class="i">🎯</span>解決什麼問題？</div>
+          <p>拿到關鍵字和使用者需求後，最考驗編輯功力的就是「排出好的文章架構」。好的架構不只是把 SERP 的 H2 全整理起來，而是要同時符合搜尋意圖、解決使用者問題、資訊順序合理，又不漏掉重要疑慮。常常排到一半才發現前面少拆一個需求，後面又要重調。</p>
+          <div class="q"><span class="i">🤖</span>Skill 可以怎麼幫忙？</div>
+          <p>把「關鍵字」＋前一步的「使用者需求分析」丟給它，先產出一份完整內容簡報：H2／H3 架構建議、每段要回答的問題、建議內容深度與字數比例、可補充的內部連結方向，等於先幫你把骨架搭起來。拿到初版後，再依 SEO 經驗調整順序、補角度，速度快很多。</p>
+          <div class="q"><span class="i">🛠️</span>我們可以怎麼做自己的 Skill？</div>
+          <p>把每個編輯排架構時默默在檢查的判斷標準寫成規則：</p>
+          <ul>
+            <li>這篇有沒有完整回答搜尋意圖？</li>
+            <li>使用者常見問題有沒有涵蓋？</li>
+            <li>段落順序是否符合使用者理解流程？</li>
+            <li>有沒有補足競品沒回答的資訊？</li>
+          </ul>
+        </div>
+        <a class="reflink" href="https://seranking.com/claude-seo-skills.html" target="_blank" rel="noopener"><span class="dot">▸</span>SEO Skills for Claude（Content briefs）<span class="site">SE Ranking</span></a>
+        <div class="tip">📌 有一份符合邏輯的架構底稿可以修改，永遠比盯著空白文件想半天有效率。</div>
+      </div>
+
+      <!-- SKILL 3 -->
+      <div class="skillcard">
+        <div class="sh"><div class="num">3</div><h3>產文章：初稿 Skill</h3></div>
+        <div class="qa">
+          <div class="q"><span class="i">🎯</span>解決什麼問題？</div>
+          <p>Brief、H2、H3 都整理好了，但真正開始寫第一段還是會卡：這段怎麼展開？資訊順序怎麼排比較順？怎麼整理成符合讀者閱讀習慣的內容？</p>
+          <div class="q"><span class="i">🤖</span>Skill 可以怎麼幫忙？</div>
+          <p>把前面的 Content Brief 丟進去，AI 可以協助完成第一版初稿、各段落內容延伸、標題與開頭變化、資料補充與引用提醒。重點不是取代編輯，而是把它定位成「第一輪內容助手」，先把空白文件填滿；後續資料正確性、品牌語氣、專業判斷仍由編輯把關。</p>
+          <div class="q"><span class="i">🛠️</span>我們可以怎麼做自己的 Skill？</div>
+          <p>把寫稿時最重要的規則直接寫進 Skill：</p>
+          <ul>
+            <li>品牌語氣與寫作風格</li>
+            <li>每個段落必須扣回 H2 主題</li>
+            <li>需要數據或研究佐證處，自動標記「需查證」</li>
+            <li>不允許自行編造資料或引用不存在的來源</li>
+          </ul>
+        </div>
+        <a class="reflink" href="https://github.com/aaron-he-zhu/seo-geo-claude-skills/blob/main/build/seo-content-writer/SKILL.md" target="_blank" rel="noopener"><span class="dot">▸</span>seo-content-writer skill<span class="site">GitHub / aaron-he-zhu</span></a>
+        <div class="tip">📌 記住：Skill 產的是「初稿」，SEO 編輯仍然是最後的品質把關者。</div>
+      </div>
+
+      <!-- SKILL 4 -->
+      <div class="skillcard">
+        <div class="sh"><div class="num">4</div><h3>修文章第一關：幫文章洗掉 AI 味 Skill</h3></div>
+        <div class="qa">
+          <div class="q"><span class="i">🎯</span>解決什麼問題？</div>
+          <p>AI 產文容易有明顯生成感，像每篇都愛用「隨著現代人生活節奏加快…」「不僅如此，更重要的是…」。內容雖然通順，但讀多了會讓人覺得「這是不是 AI 寫的？」</p>
+          <div class="q"><span class="i">🤖</span>Skill 可以怎麼幫忙？</div>
+          <p>從用詞、句型、段落節奏、開頭方式等層面重新調整，讓內容更接近真人編輯撰寫。</p>
+          <div class="q"><span class="i">🛠️</span>我們可以怎麼做自己的 Skill？</div>
+          <p>先整理一份自己的「AI 黑名單」：常見 AI 套語、太整齊的句型、每段固定相同開頭、過度總結式結尾、空泛形容詞堆疊等。同時設一條紅線：<b>只調整文字風格，不修改事實、不改動專有名詞、不改變原本資訊意思。</b></p>
+        </div>
+        <a class="reflink" href="https://github.com/timolabs-ai/claude-humanize-skill" target="_blank" rel="noopener"><span class="dot">▸</span>claude-humanize-skill（五層去 AI 腔）<span class="site">GitHub / timolabs-ai</span></a>
+        <div class="tip">📌 這一步做完，後面的 E-E-A-T 審核會輕鬆很多，因為文章基礎品質已先提升。</div>
+      </div>
+
+      <!-- SKILL 5 -->
+      <div class="skillcard">
+        <div class="sh"><div class="num">5</div><h3>修文章第二關：把審稿標準固定下來（E-E-A-T QA）</h3></div>
+        <div class="qa">
+          <div class="q"><span class="i">🎯</span>解決什麼問題？</div>
+          <p>以前 QA 很吃個人經驗。同一篇文章，A 編輯覺得資訊完整，B 編輯可能擔心缺數據來源、說法太武斷、缺專業依據。審稿標準沒被整理，每個人判斷就會不同。</p>
+          <div class="q"><span class="i">🤖</span>Skill 可以怎麼幫忙？</div>
+          <p>把發稿前檢查流程固定化：是否有實際經驗或使用情境、是否展現專業資訊、是否有可信來源、資訊是否透明可靠；同時檢查 AI 味、贅字、被動語態、不通順句子、沒有來源的數據、事實正確性。</p>
+          <div class="q"><span class="i">🛠️</span>我們可以怎麼做自己的 Skill？</div>
+          <p>把團隊原本的發稿 Checklist（例如 Trello 檢查清單、內部評分標準）搬進 Skill，要求 AI 逐項評分、標示問題位置、提供修改原因，讓審核從「靠經驗審稿」變成「固定標準檢查」。</p>
+        </div>
+        <a class="reflink" href="https://openclaws.substack.com/p/best-seo-claude-skills-6-skill-stack" target="_blank" rel="noopener"><span class="dot">▸</span>Best SEO Claude Skills: 6-Skill Stack That Cuts QA Time in Half<span class="site">Openclaws</span></a>
+      </div>
+
+      <!-- SKILL 6 -->
+      <div class="skillcard">
+        <div class="sh"><div class="num">6</div><h3>讓文章被 AI 引用：GEO／AEO 優化 Skill ⭐（2026 加分題）</h3></div>
+        <div class="qa">
+          <div class="q"><span class="i">🎯</span>解決什麼問題？</div>
+          <p>以前 SEO 主要關注排名，但現在多了一個問題：「文章排名很好，為什麼 AI 回答時沒引用？」GEO 的核心，就是讓內容不只被搜尋引擎理解，也更容易被生成式 AI 擷取與推薦。</p>
+          <div class="q"><span class="i">🤖</span>Skill 可以怎麼幫忙？</div>
+          <p>協助檢查文章是否具備 AI 容易引用的元素：是否有清楚定義句、是否有可引用資訊句、是否有 Q&amp;A 區塊、是否補充來源與更新日期等。</p>
+          <div class="q"><span class="i">🛠️</span>我們可以怎麼做自己的 Skill？</div>
+          <p>把「AI 愛引用的內容特徵」整理成體檢清單，讓 Skill 每篇檢查：哪些地方需補定義、哪些句子可整理成核心答案、缺少哪些 Q&amp;A、引用來源是否有日期與可信度，最後產出修改建議。</p>
+        </div>
+        <a class="reflink" href="https://github.com/Auriti-Labs/geo-optimizer-skill" target="_blank" rel="noopener"><span class="dot">▸</span>geo-optimizer-skill（AEO／GEO 開源工具包）<span class="site">GitHub / Auriti-Labs</span></a>
+        <div class="tip">📌 建議大家有空一定要動手玩一次！把依賴個人經驗、每天重複的流程，轉成 AI 能理解執行的 Skill，會明顯感覺效率提升。</div>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section>
+      <h2 class="sec"><span class="bar"></span>🔑 最後整理：一套 Skill = 一條 SEO 內容產線</h2>
+      <p class="sec-sub">未來 SEO 編輯流程也許會變成這樣——每一段都有一個 Skill 幫你把「每次都要重講的規則」自動化。</p>
+      <div class="flow">
+        <span class="step">搜尋意圖 Skill</span><span class="arr">→</span>
+        <span class="step">架構 Skill</span><span class="arr">→</span>
+        <span class="step">產文章 Skill</span><span class="arr">→</span>
+        <span class="step">去 AI 味 Skill</span><span class="arr">→</span>
+        <span class="step">E-E-A-T Skill</span><span class="arr">→</span>
+        <span class="step">GEO Skill</span>
+      </div>
+      <div class="callout">你不用再重貼 prompt，用平常講話的方式描述任務，它就能精準執行。<b style="color:var(--accent)">你的工作經驗，本身就是一套可以被 AI 執行的 SOP。</b></div>
+    </section>
+
+    <!-- SOURCES -->
+    <section>
+      <h2 class="sec"><span class="bar"></span>📎 參考資料</h2>
+      <div class="srcs">
+        <a href="https://ahrefs.com/blog/claude-skills/" target="_blank" rel="noopener"><span class="dot">▸</span>Claude Skills for SEO and Marketing<span class="site">Ahrefs</span></a>
+        <a href="https://openclaws.substack.com/p/best-seo-claude-skills-6-skill-stack" target="_blank" rel="noopener"><span class="dot">▸</span>Best SEO Claude Skills: 6-Skill Stack That Cuts QA Time in Half<span class="site">Openclaws</span></a>
+        <a href="https://infranodus.com/skills/seo" target="_blank" rel="noopener"><span class="dot">▸</span>Search Intent &amp; Content Gap Analysis skill<span class="site">InfraNodus</span></a>
+        <a href="https://seranking.com/claude-seo-skills.html" target="_blank" rel="noopener"><span class="dot">▸</span>SEO Skills for Claude（Content briefs、intent）<span class="site">SE Ranking</span></a>
+        <a href="https://github.com/aaron-he-zhu/seo-geo-claude-skills/blob/main/build/seo-content-writer/SKILL.md" target="_blank" rel="noopener"><span class="dot">▸</span>seo-content-writer skill<span class="site">GitHub / aaron-he-zhu</span></a>
+        <a href="https://github.com/Yaroslavle/seo-content-writer-claude-skill" target="_blank" rel="noopener"><span class="dot">▸</span>seo-content-writer（JTBD＋E-E-A-T＋5 階段）<span class="site">GitHub / Yaroslavle</span></a>
+        <a href="https://github.com/timolabs-ai/claude-humanize-skill" target="_blank" rel="noopener"><span class="dot">▸</span>claude-humanize-skill（/humanize，五層去 AI 腔）<span class="site">GitHub / timolabs-ai</span></a>
+        <a href="https://github.com/sociilabs/claude-content-writer" target="_blank" rel="noopener"><span class="dot">▸</span>claude-content-writer（寫得像人）<span class="site">GitHub / sociilabs</span></a>
+        <a href="https://github.com/AgriciDaniel/claude-blog" target="_blank" rel="noopener"><span class="dot">▸</span>claude-blog（研究→大綱→草稿→引用查核）<span class="site">GitHub / Daniel Agrici</span></a>
+        <a href="https://github.com/Auriti-Labs/geo-optimizer-skill" target="_blank" rel="noopener"><span class="dot">▸</span>geo-optimizer-skill（AEO／GEO 開源工具包）<span class="site">GitHub / Auriti-Labs</span></a>
+        <a href="https://www.trevorlasn.com/blog/aeo-geo-vs-seo-google-ai-optimization" target="_blank" rel="noopener"><span class="dot">▸</span>AEO and GEO for AI Overviews, ChatGPT, Claude, Gemini, and Perplexity<span class="site">Trevor Lasn</span></a>
+      </div>
+    </section>
+  </div>
+
+  <!-- POLL (shared) -->
   <section>
-    <div class="poll" id="poll">
-      <h2>🗳️ 下一集你最想看什麼？</h2>
-      <p>如果有一件編輯工作最想交給 AI，你最希望它先幫你處理哪一件？<br>
-        投票在 <b>#ai-yoyo-tv</b> 頻道進行——用對應的 <b>emoji 反應</b>投給你想看的主題，票數最高的成為下一集專題 ～</p>
-      <div class="opts" id="opts">
-        <div class="opt static"><span class="lbl">🪄 改稿濾鏡 Skill 實作</span><span class="vote">用 🪄 投票</span></div>
-        <div class="opt static"><span class="lbl">🔍 用戶需求 / 搜尋意圖分析</span><span class="vote">用 🔍 投票</span></div>
-        <div class="opt static"><span class="lbl">🏗️ 自動產架構與初稿</span><span class="vote">用 🏗️ 投票</span></div>
-        <div class="opt static"><span class="lbl">🩺 全站內容稽核</span><span class="vote">用 🩺 投票</span></div>
+    <div class="poll">
+      <h2>🗳️ 本集互動：你最想先動手做哪一個 Skill？</h2>
+      <p>這 6 個 Skill 方向，你最想先做哪一個？到 <b>#ai-yoyo-tv</b> 頻道留言 +1，看到認同的留言也幫忙貼個 ❤️。<br>
+        也歡迎分享一個你「每天／每週都在重複做」的寫作小任務，再 Tag 下一位編輯接力 🙌</p>
+      <div class="opts">
+        <div class="opt static"><span class="lbl">🔍 搜尋意圖分析 Skill</span><span class="vote">留言 +1</span></div>
+        <div class="opt static"><span class="lbl">🏗️ 內容架構 Skill</span><span class="vote">留言 +1</span></div>
+        <div class="opt static"><span class="lbl">✍️ 產文章初稿 Skill</span><span class="vote">留言 +1</span></div>
+        <div class="opt static"><span class="lbl">🪄 洗掉 AI 味 Skill</span><span class="vote">留言 +1</span></div>
+        <div class="opt static"><span class="lbl">🩺 E-E-A-T 把關 Skill</span><span class="vote">留言 +1</span></div>
+        <div class="opt static"><span class="lbl">🤖 GEO／AEO 優化 Skill</span><span class="vote">留言 +1</span></div>
       </div>
       <a class="slackcta" href="https://wellyseo.slack.com/archives/C0BE8QB42P7" target="_blank" rel="noopener">
-        <span class="ico">💬</span> 到 #ai-yoyo-tv 投票 & 留言
+        <span class="ico">💬</span> 到 #ai-yoyo-tv 投票 &amp; 留言
       </a>
     </div>
   </section>
 
-  <footer>ai-yoyo-tv · AI × 行銷知識交流站 · 第一集</footer>
+  <footer>ai-yoyo-tv · AI × 行銷知識交流站 · 知識庫</footer>
 </div>
 
 <script>
+  // scroll progress
   const prog=document.getElementById('prog');
   addEventListener('scroll',()=>{const h=document.documentElement;
     const p=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;prog.style.width=p+'%';});
 
-  const tabs=[...document.querySelectorAll('.tab')];
-  const panels=[...document.querySelectorAll('.panel')];
-  tabs.forEach(t=>t.addEventListener('click',()=>{
-    const k=t.dataset.k;
-    tabs.forEach(x=>x.classList.toggle('on',x.dataset.k===k));
-    panels.forEach(p=>p.classList.toggle('on',p.dataset.k===k));
+  // episode switch
+  const epbtns=[...document.querySelectorAll('.epbtn')];
+  const episodes=[...document.querySelectorAll('.episode')];
+  epbtns.forEach(b=>b.addEventListener('click',()=>{
+    const ep=b.dataset.ep;
+    epbtns.forEach(x=>x.classList.toggle('on',x.dataset.ep===ep));
+    episodes.forEach(e=>e.classList.toggle('on',e.dataset.ep===ep));
+    window.scrollTo({top:0,behavior:'smooth'});
   }));
 
-  document.querySelectorAll('#checks li').forEach(li=>
-    li.addEventListener('click',()=>li.classList.toggle('done')));
+  // ep1 tabs (scoped to ep1)
+  const ep1=document.querySelector('.episode[data-ep="1"]');
+  if(ep1){
+    const tabs=[...ep1.querySelectorAll('.tab')];
+    const panels=[...ep1.querySelectorAll('.panel')];
+    tabs.forEach(t=>t.addEventListener('click',()=>{
+      const k=t.dataset.k;
+      tabs.forEach(x=>x.classList.toggle('on',x.dataset.k===k));
+      panels.forEach(p=>p.classList.toggle('on',p.dataset.k===k));
+    }));
+    ep1.querySelectorAll('.checks li').forEach(li=>
+      li.addEventListener('click',()=>li.classList.toggle('done')));
+  }
 </script>
 </body>
 </html>
