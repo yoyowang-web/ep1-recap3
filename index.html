@@ -157,6 +157,8 @@
   /* poll */
   .poll{background:linear-gradient(120deg,#e2f4f0,#dcf0f4);
     border:1px solid var(--line);border-radius:20px;padding:26px 24px;text-align:center}
+  .pollcta{display:block;text-decoration:none;color:inherit;cursor:pointer;transition:.18s}
+  .pollcta:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(13,148,136,.18)}
   .poll h2{margin:.1em 0}
   .poll p{color:var(--muted);font-size:14px;margin:.4em 0 18px}
   .opts{display:grid;gap:10px;max-width:520px;margin:0 auto;text-align:left}
@@ -202,8 +204,9 @@
     <div class="ephead">
       <div class="epk">第一集</div>
       <h2>Claude 的 3 種打開方式，SEO 編輯都用得到</h2>
+      <div class="date">🗓️ 7 月 6 日上架</div>
     </div>
- 
+
     <div class="keyline">🔑 一句話記住三者差別<br>
       chat 幫你<b>寫一篇</b> · Cowork 幫你<b>跑一批</b> · Code 幫你<b>顧一整站</b></div>
 
@@ -329,7 +332,7 @@
 
     <div class="ephead">
       <div class="epk">第二集</div>
-      <h2>SEO 編輯的第一批 Skill：把每次重講的規則，變成 AI 記得住的工作流程</h2>
+      <h2>SEO 編輯的第一批 Skill：把每次重講的規則，變成自動觸發的 playbook</h2>
       <div class="date">🗓️ 7 月 20 日上架</div>
     </div>
 
@@ -519,22 +522,11 @@
 
   <!-- POLL (shared) -->
   <section>
-    <div class="poll">
-      <h2>🗳️ 本集互動：你最想先動手做哪一個 Skill？</h2>
-      <p>這 6 個 Skill 方向，你最想先做哪一個？到 <b>#ai-yoyo-tv</b> 頻道留言 +1，看到認同的留言也幫忙貼個 ❤️。<br>
-        也歡迎分享一個你「每天／每週都在重複做」的寫作小任務，再 Tag 下一位編輯接力 🙌</p>
-      <div class="opts">
-        <div class="opt static"><span class="lbl">🔍 搜尋意圖分析 Skill</span><span class="vote">留言 +1</span></div>
-        <div class="opt static"><span class="lbl">🏗️ 內容架構 Skill</span><span class="vote">留言 +1</span></div>
-        <div class="opt static"><span class="lbl">✍️ 產文章初稿 Skill</span><span class="vote">留言 +1</span></div>
-        <div class="opt static"><span class="lbl">🪄 洗掉 AI 味 Skill</span><span class="vote">留言 +1</span></div>
-        <div class="opt static"><span class="lbl">🩺 E-E-A-T 把關 Skill</span><span class="vote">留言 +1</span></div>
-        <div class="opt static"><span class="lbl">🤖 GEO／AEO 優化 Skill</span><span class="vote">留言 +1</span></div>
-      </div>
-      <a class="slackcta" href="https://wellyseo.slack.com/archives/C0BE8QB42P7" target="_blank" rel="noopener">
-        <span class="ico">💬</span> 到 #ai-yoyo-tv 投票 &amp; 留言
-      </a>
-    </div>
+    <a class="poll pollcta" href="https://wellyseo.slack.com/archives/C0BE8QB42P7" target="_blank" rel="noopener">
+      <h2>🙌 本週接力</h2>
+      <p>說一個你「每天／每週都在重複做」的寫作小任務（例如：改錯字、抓 AI 感、查醫美法規…一個詞也可以 😆）</p>
+      <span class="slackcta"><span class="ico">💬</span> 到 #ai-yoyo-tv 留言接力</span>
+    </a>
   </section>
 
   <footer>ai-yoyo-tv · AI × 行銷知識交流站 · 知識庫</footer>
