@@ -210,9 +210,13 @@
       <div class="no">EP.03</div>
       <div class="tt">ChatGPT／Claude／Gemini 怎麼選？</div>
     </div>
-    <div class="epbtn on" data-ep="4">
-      <div class="no">EP.04 <span class="newpill">NEW</span></div>
+    <div class="epbtn" data-ep="4">
+      <div class="no">EP.04</div>
       <div class="tt">跟 AI 寫 SEO 文章的 11 個誤會</div>
+    </div>
+    <div class="epbtn on" data-ep="5">
+      <div class="no">EP.05 <span class="newpill">NEW</span></div>
+      <div class="tt">Claude Tag 怎麼用、怎麼玩</div>
     </div>
   </div>
 
@@ -688,10 +692,10 @@
   </div>
 
   <!-- ============ EP4 ============ -->
-  <div class="episode on" data-ep="4">
+  <div class="episode" data-ep="4">
     <div class="ephead">
       <div class="epk">第四集</div>
-      <h2>跟 AI 一起寫 SEO 文章，11 個常見的使用誤區</h2>
+      <h2>跟 AI 一起寫 SEO 文章，最容易踩到的 11 個誤會</h2>
       <div class="date">🗓️ 8 月 31 日上架</div>
     </div>
 
@@ -1018,6 +1022,133 @@
     <a class="poll pollcta" style="margin-top:44px" href="https://wellyseo.slack.com/archives/C0BE8QB42P7" target="_blank" rel="noopener">
       <h2>🙌 本週接力</h2>
       <p>說一個你曾經信過、後來發現不太對的 AI 使用習慣或內容（例如：以為同一個對話聊越久它越懂、錯信某個引用數據等 😆），幫大家少踩雷！一句話就好，再 Tag 下一位編輯接力！🔥 歡迎幫這集熱烈貼貼圖 🔥😆</p>
+      <span class="slackcta"><span class="ico">💬</span> 到 #ai-yoyo-tv 留言接力</span>
+    </a>
+  </div>
+
+  <!-- ============ EP5 ============ -->
+  <div class="episode on" data-ep="5">
+    <div class="ephead">
+      <div class="epk">第五集</div>
+      <h2>Claude Tag 是什麼？SEO 編輯可以怎麼用、怎麼玩？</h2>
+      <div class="date">🗓️ 9 月 22 日上架</div>
+    </div>
+
+    <div class="keyline">🔑 一句話記住 Claude Tag<br>它是住在 Slack 裡、<b>會自己動</b>、<b>全隊共用</b>的 AI 同事。</div>
+
+    <div class="src-note" style="margin-top:18px">本集整理自 <b>Anthropic 官方 Webinar</b>（2026 年 7 月）與 <b>Claude Tag 官方文件</b>。公司這次測試期到 <b>10/1</b>，玩法會挑「這段時間、你自己就試得動」的。</div>
+
+    <div class="introlead">
+      <p>前幾集我們聊過 Claude Chat、Cowork、Code，也把固定編輯規則整理成 Skill，像 format-check、用字規範。</p>
+      <p>最近 Anthropic 推出 <b>Claude Tag</b>，可以直接在 Slack 裡 @Claude 交辦工作。這一集用最白話的方式，帶大家搞懂它是什麼、跟 Cowork 差在哪、怎麼運作怎麼用，以及可以怎麼玩。</p>
+      <div class="quote">💬 一句話：它是一個住在 Slack 頻道裡的 AI 同事，任何人都可以在頻道裡 @Claude 交辦工作。Anthropic 內部大約有 <b>65%</b> 的 pull requests 是由 @Claude 開啟的。</div>
+    </div>
+
+    <section>
+      <h2 class="sec"><span class="bar"></span>🆚 Claude Tag 和 Cowork 差在哪？</h2>
+      <p class="sec-sub">最直接的差別是「你在哪裡用它」：<b>Cowork 開在 Claude App 裡</b>（你自己的桌面工作區），<b>Claude Tag 則活在 Slack 裡</b>（你 @它、它就在對話串回你）。介面不同，帶出後面一連串差異。</p>
+      <p style="margin:0 0 8px">記規則、檢查一篇文章，這些 Cowork 就做得到。Claude Tag 多出來的是「團隊共用、會自己動、會留痕」，而且地盤在雲端。</p>
+      <div class="tblwrap">
+        <table>
+          <thead><tr><th>面向</th><th>Cowork</th><th>Claude Tag</th></tr></thead>
+          <tbody>
+            <tr><th>在哪裡用</th><td>Claude App 裡（你的桌面工作區）</td><td>Slack 裡（@Claude 就在對話串回你）</td></tr>
+            <tr><th>誰啟動</th><td>你開它才做事</td><td>可設「定時工作」，它自己按時間動</td></tr>
+            <tr><th>留不留痕</th><td>對話在你這邊</td><td>交辦與結果留在共同頻道，可查、可接續</td></tr>
+            <tr><th>碰得到什麼</th><td>你電腦裡的本機檔（OKR 工具、工時工具那種）</td><td>雲端服務（Google Drive、Docs、Sheet、日曆）</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="sec"><span class="bar"></span>🎮 現在就能自己玩的四招（零設定，測試到 10/1）</h2>
+      <p class="sec-sub">與其先研究一堆設定，不如先自己玩一次最快。先講兩件事，再開始玩。</p>
+      <div class="callout">🔸 Claude Tag 是在<b>頻道裡</b>運作的。想先自己試試看，不用等團隊一起，可以開一個只有你和 Claude 的頻道（把 @Claude 加進去），當成自己的練習場，隨便玩都行。<br>🔸 下面這些玩法都是<b>零設定、不用麻煩管理員外接</b>，自己貼一則就能跑（要讀你的 Google 文件、表、日曆才需要管理員先接，那屬進階，放在下一節）。</div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">1</div><h3>每週五提醒本週必辦</h3></div>
+        <div class="prompt"><span class="pl">可直接複製</span>@Claude 每週五早上 10 點（台北時間），貼一則提醒：本週送審前要完成的事（初步格式審核、用字檢查、Meta 確認、來源核對），請我逐項確認。</div>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">2</div><h3>週二提醒首三篇客戶追蹤</h3></div>
+        <div class="prompt"><span class="pl">可直接複製</span>@Claude 每週二早上 10 點（台北時間），提醒我確認本週優先的前三篇文章有沒有卡在客戶回覆，該追的去追。</div>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">3</div><h3>讓 Claude 定期幫你追新知</h3></div>
+        <div class="qa"><p>Claude Tag <b>內建網路搜尋</b>，不用接任何東西就能幫你找資料：</p></div>
+        <div class="prompt"><span class="pl">可直接複製</span>@Claude 每週一早上 10 點（台北時間），用網路搜尋幫我整理上週的醫美行銷新知，挑 3 則最值得看的，每則一句話講重點加連結。</div>
+        <div class="tip">📌「醫美行銷」可以換成你負責的行業趨勢、AI 行銷新知、SEO／GEO 動態等。等於幫自己養一個每週自動送來的小情報站。</div>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">4</div><h3>職務代理小幫手</h3></div>
+        <div class="prompt"><span class="pl">可直接複製</span>@Claude 每天下午 4 點（台北時間），幫我整理這個頻道裡我今天提到、但還沒完成的代理事項，列成待辦清單。</div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="sec"><span class="bar"></span>⚙️ 接上工具後，它能幫的更多（團隊工作流的下一步）</h2>
+      <p class="sec-sub">玩過上面幾招之後，如果想更進一步，可以看看「接上工具」能解鎖什麼。這一段偏「未來團隊會走的方向」：有些能力要管理員先把工具接上才會生效，但正因為接上之後力量最大，先看見它能做到哪，之後導入才有目標，也就是先知道值得接的理由。</p>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">1</div><h3>規則設定一次，全隊共用</h3></div>
+        <div class="qa">
+          <p>一個 Skill（像 format-check）由管理員掛進頻道、或把規則放進頻道設定，設定一次，之後全隊只要 @Claude 就自動照那套規則做，不用每次上傳、不用各記各的。</p>
+          <div class="q"><span class="i">▶︎</span>用法：讀 Google Docs 直接跑初步格式審核</div>
+        </div>
+        <div class="prompt"><span class="pl">可直接複製</span>@Claude 讀 Google Drive 裡的「XXX_初稿」，套用 format-check。只列：1. 原句 2. 違反哪一條 3. 建議改法。不要改正文。</div>
+        <div class="takeaway"><span>📌</span><span>省掉「下載，上傳 Cowork，貼規則，搬結果」這一串。</span></div>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">2</div><h3>它讀得到「連進頻道的東西」</h3></div>
+        <div class="qa">
+          <p>接上之後，Google Drive、Docs、Sheet、日曆它都讀得到。（Trello、LINE、crm.welly.tw、你電腦裡的本機工具目前接不進來，那些留在 Cowork。）</p>
+          <div class="q"><span class="i">▶︎</span>用法：交稿前 Final QA</div>
+        </div>
+        <div class="prompt"><span class="pl">可直接複製</span>@Claude 檢查「XXX_完稿」，依序跑 format-check、用字規範、來源與數字、H2 有沒有回答搜尋意圖。整理成：必改、建議修改、需人工確認。</div>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">3</div><h3>它會自己動，還會留痕</h3></div>
+        <div class="qa">
+          <p>除了你 @它，它還能設「定時工作」，自己按時間動；而且所有交辦與結果都留在共同頻道。這是 Cowork 沒有的。</p>
+          <div class="q"><span class="i">▶︎</span>用法：QA 過程留給全隊看</div>
+          <ul>
+            <li>編輯 A：<b>@Claude 跑 format-check</b>，Claude 回：找到 7 個問題。</li>
+            <li>編輯 B：第 3 項不用改，其他處理，<b>@Claude 再檢查一次</b>。</li>
+          </ul>
+          <p>誰跑過、找到什麼、哪些決定不改，全隊查得到。客戶問「為什麼這段這樣改」，有紀錄可交代。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="sec"><span class="bar"></span>🧩 那要怎麼讓全隊都用同一套標準？認識 Plugin</h2>
+      <p class="sec-sub">不管是自己玩的提醒，還是上面接上工具後的團隊用法，規則多半還是一個一個設。如果要讓整個編輯團隊都照同一套規則做事（例如大家的 format-check、用字規範都一致），一個一個設就太麻煩了，這時候會用到 Plugin。</p>
+      <div class="skillbox">
+        <p>簡單說，<b>Plugin 就是「把一組 Skill（和連線）打包成一包」</b>，一次掛進頻道，全隊直接用，不用每個人各自安裝、各自找規則。</p>
+        <p>可以想像未來一個 <b>Welly SEO Editor Plugin</b>，裡面包 format-check、用字規範、Meta check，加上 Google Drive 連線。掛進頻道後，大家 @Claude 就都照同一套標準做事。目前官方對「Claude Tag 能不能直接套完整 Plugin」說明還不完整，先當作值得觀察的下一步。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="sec"><span class="bar"></span>📎 參考資料</h2>
+      <div class="srcs">
+        <a href="https://www.anthropic.com/webinars/how-anthropic-works-with-claude-tag-in-slack" target="_blank" rel="noopener"><span class="dot">▸</span>How Anthropic works with Claude Tag in Slack（Webinar）<span class="site">Anthropic</span></a>
+        <a href="https://www.anthropic.com/news/introducing-claude-tag" target="_blank" rel="noopener"><span class="dot">▸</span>Introducing Claude Tag<span class="site">Anthropic</span></a>
+        <a href="https://claude.com/docs/claude-tag/users/proactivity" target="_blank" rel="noopener"><span class="dot">▸</span>Set up routines（排程與定時工作）<span class="site">Claude Docs</span></a>
+        <a href="https://claude.com/docs/claude-tag/admins/add-connections" target="_blank" rel="noopener"><span class="dot">▸</span>Give Claude access to your tools（連線清單，含 Google Workspace）<span class="site">Claude Docs</span></a>
+        <a href="https://support.claude.com/en/articles/15594475-what-is-claude-tag" target="_blank" rel="noopener"><span class="dot">▸</span>What is Claude Tag?<span class="site">Claude Help Center</span></a>
+      </div>
+    </section>
+
+    <a class="poll pollcta" style="margin-top:44px" href="https://wellyseo.slack.com/archives/C0BE8QB42P7" target="_blank" rel="noopener">
+      <h2>🙌 本週接力（測試期限定，到 10/1）</h2>
+      <p>直接在頻道用這個句型留言：「我想測 ＿＿＿＿，希望 @Claude 幫我 ＿＿＿＿。」例如：「我想測職務代理，希望 @Claude 每天下午幫我整理還沒完成的代理事項。」不用想太多，也不用回報成效，就當成玩玩看，先試起來比試得完美更重要！</p>
       <span class="slackcta"><span class="ico">💬</span> 到 #ai-yoyo-tv 留言接力</span>
     </a>
   </div>
