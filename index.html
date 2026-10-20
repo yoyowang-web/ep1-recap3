@@ -36,14 +36,26 @@
   .src-note b{color:var(--accent)}
 
   /* episode nav */
-  .epnav{display:flex;gap:10px;justify-content:center;margin:34px 0 8px;flex-wrap:wrap}
+  .epnav{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:34px 0 8px}
   .epbtn{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:14px;
-    padding:10px 16px;text-align:left;min-width:150px;transition:.15s}
-  .epbtn:hover{border-color:var(--accent);transform:translateY(-2px)}
+    padding:12px 16px 14px;text-align:left;transition:.15s;display:flex;flex-direction:column;gap:4px;min-width:0}
+  .epbtn:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 16px rgba(13,148,136,.08)}
   .epbtn .no{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--muted)}
-  .epbtn .tt{font-weight:800;margin-top:2px;font-size:15px;color:var(--ink)}
+  .epbtn .tt{font-weight:700;font-size:14px;line-height:1.5;color:var(--ink);
+    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
   .epbtn.on{border-color:var(--accent);box-shadow:0 0 0 2px rgba(13,148,136,.25);background:#f1fbf9}
   .epbtn.on .no{color:var(--accent)}
+  .epbtn.latest{grid-column:1/-1;order:-2;flex-direction:row;align-items:center;gap:16px;padding:16px 20px;
+    background:linear-gradient(135deg,#f1fbf9,#e8f6fb);border-color:var(--accent)}
+  .epbtn.latest .lt-body{flex:1;min-width:0}
+  .epbtn.latest .tt{font-size:17px;font-weight:800;-webkit-line-clamp:3;margin-top:4px}
+  .epbtn.latest .lt-go{flex:none;font-size:13px;font-weight:700;color:var(--accent);white-space:nowrap}
+  .eplabel{grid-column:1/-1;order:-1;font-size:12px;font-weight:700;letter-spacing:2px;color:var(--muted);margin:10px 2px 0}
+  @media(max-width:620px){
+    .epnav{grid-template-columns:repeat(2,1fr)}
+    .epbtn.latest{flex-direction:column;align-items:flex-start;gap:6px}
+    .epbtn.latest .tt{font-size:16px}
+  }
   .newpill{display:inline-block;font-size:10px;font-weight:800;color:#fff;background:var(--accent2);
     border-radius:999px;padding:1px 7px;margin-left:6px;vertical-align:middle}
   .episode{display:none;animation:fade .3s}
@@ -222,10 +234,14 @@
       <div class="no">EP.06</div>
       <div class="tt">AI 越來越會寫 SEO 文章，內容還能怎麼做出差異？</div>
     </div>
-    <div class="epbtn on" data-ep="7">
-      <div class="no">EP.07 <span class="newpill">NEW</span></div>
-      <div class="tt">AI 產出和預期不一樣？用 3 個測試找出可以優化的地方</div>
+    <div class="epbtn latest on" data-ep="7">
+      <div class="lt-body">
+        <div class="no">最新一集 · EP.07 <span class="newpill">NEW</span></div>
+        <div class="tt">AI 產出和預期不一樣？用 3 個測試找出可以優化的地方</div>
+      </div>
+      <div class="lt-go">閱讀本集 →</div>
     </div>
+    <div class="eplabel">📚 往期回顧</div>
   </div>
 
   <!-- ============ EP1 ============ -->
