@@ -218,9 +218,13 @@
       <div class="no">EP.05</div>
       <div class="tt">Claude Tag 怎麼用、怎麼玩</div>
     </div>
-    <div class="epbtn on" data-ep="6">
-      <div class="no">EP.06 <span class="newpill">NEW</span></div>
+    <div class="epbtn" data-ep="6">
+      <div class="no">EP.06</div>
       <div class="tt">AI 越來越會寫 SEO 文章，內容還能怎麼做出差異？</div>
+    </div>
+    <div class="epbtn on" data-ep="7">
+      <div class="no">EP.07 <span class="newpill">NEW</span></div>
+      <div class="tt">AI 產出和預期不一樣？用 3 個測試找出可以優化的地方</div>
     </div>
   </div>
 
@@ -1158,7 +1162,7 @@
   </div>
 
   <!-- ============ EP6 ============ -->
-  <div class="episode on" data-ep="6">
+  <div class="episode" data-ep="6">
     <div class="ephead">
       <div class="epk">第六集</div>
       <h2>AI 越來越會寫 SEO 文章，內容還能怎麼做出差異？</h2>
@@ -1332,6 +1336,290 @@
       <p>前面講了不少「觀點」和「第一手素材」，最後也想換成大家來分享。如果你在寫 SEO 文章時，有一個能讓文章更有自己特色的做法，歡迎丟到頻道留言，不一定要是什麼厲害技巧，平常真的有在用就可以。</p>
       <p style="margin-top:10px">句型：「我會讓文章更有自己特色的方法是＿＿＿＿。」<br>例如：「我會讓文章更有自己特色的方法是：自己實測一次，再把過程中的差異整理成表格。」</p>
       <p style="margin-top:10px">一句話就好，一個作法、一個習慣、一個檢查方式都可以，看看我們自己的 SEO 編輯工作裡，還有哪些方法可以讓文章多一點「只有我們能提供的東西」。</p>
+      <span class="slackcta"><span class="ico">💬</span> 到 #ai-yoyo-tv 留言接力</span>
+    </a>
+  </div>
+
+  <!-- ============ EP7 ============ -->
+  <div class="episode on" data-ep="7">
+    <div class="ephead">
+      <div class="epk">第七集</div>
+      <h2>AI 產出和預期不一樣？用 3 個測試，找出可以優化的地方</h2>
+      <div class="date">🗓️ 10 月 20 日上架</div>
+    </div>
+
+    <div class="keyline">🔑 一句話記住這集<br>產出和預期不一樣時，先判斷是<b>指令或資料可以再補充</b>，還是 <b>Skill 有地方可以再優化</b>，2 種情況處理方式不同。</div>
+
+    <div class="src-note" style="margin-top:18px">本集參考 <b>Search Engine Land</b>〈Context engineering: How to prevent AI workflows from degrading〉（Tania Brown，2026 年 10 月 8 日），並搭配 <b>Google Search Central</b> 官方文件、GEO 研究與 Anthropic 官方建議整理。</div>
+
+    <div class="introlead">
+      <p>團隊的產架構、產文章 Skill，已經是很多人每天都會用到的工具。用得越多，我們也越熟悉它們的習慣。</p>
+      <p>跟 AI 協作時，偶爾會遇到產出和預期不太一樣的時候，例如某個關鍵字沒放進架構，或某段內容還需要調整。這很正常，因為 AI 每次讀到的資料和對話不會完全相同，產出自然會有些差異。</p>
+      <div class="quote">💬 這時候，與其直接重跑或手動改掉，不如多花一分鐘想想：<b>這次的差異，是指令或資料還能再補充，還是 Skill 有地方可以再優化？</b></div>
+      <p>這 2 種問題要分開處理。</p>
+      <ul>
+        <li>如果是這次的指令或資料有問題，調整自己的操作方式就好。</li>
+        <li>如果是 Skill 的規則、範例或共用資料有問題，就要回報團隊。修正之後，其他人也不會再踩同一個坑。</li>
+      </ul>
+      <p>Search Engine Land 一篇談「context rot」的文章提供了一個很好用的觀念：提示詞沒變，不代表 AI 每次讀到的資料都一樣。Skill、記憶、專案文件、工具回傳內容、舊範例和前幾輪對話，都可能影響最後的產出。當這些內容過期、互相衝突或越堆越多時，原本好用的流程也可能慢慢走樣。</p>
+      <p>所以，看到怪怪的產出時，先別急著改字。<b>先找出問題是從哪一層進來的。</b></p>
+    </div>
+
+    <section>
+      <h2 class="sec"><span class="bar"></span>🔍 先做 3 個測試</h2>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">1</div><h3>開新對話，用同一批資料重跑</h3></div>
+        <div class="qa">
+          <p>如果新對話恢復正常，問題通常出在原本那串對話。可能是前面累積了太多內容，也可能是 AI 在早期誤解了需求，後面一路沿用。</p>
+          <p>一項針對多輪對話的研究（ICLR 2026 口頭報告論文）比較了單輪與多輪任務。研究中的模型在6 種生成任務裡，多輪對話的表現<b>平均下降 39%</b>。研究者觀察到，模型如果在前幾輪先做了錯誤假設，後面往往不容易自己修正回來。</p>
+        </div>
+        <div class="takeaway"><span>📌</span><span>這不代表所有任務都一定會掉 39%，但它提醒我們：如果需求已經大改，與其在舊對話裡不斷補充，不如開新對話，把確認過的資料和要求一次整理好再跑。</span></div>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">2</div><h3>換一篇或換一組資料測試</h3></div>
+        <div class="qa">
+          <p>如果只有某一篇出錯，先查這篇的資料：</p>
+          <ul>
+            <li>訪談表是不是舊版？</li>
+            <li>Google 文件權限是否正確？</li>
+            <li>PM 的要求是不是只寫在留言或註解裡？</li>
+            <li>架構、關鍵字分析和訪談表有沒有互相矛盾？</li>
+          </ul>
+          <p>如果不同文章都出現同一種錯誤，才比較像 Skill 的共通規則、範例或檢查流程有問題。</p>
+          <p>「資料過期」是 SEO 代理商很常見的狀況。Search Engine Land 另一篇談客戶資料管理的文章就指出：客戶調整定位、改變方案、停掉某項服務，如果沒人更新給 AI 讀的客戶資料，AI 就會繼續照著舊的現實產出內容。作者的建議是定期問一句：<b>「這裡面有沒有哪一條已經不是真的？」</b></p>
+        </div>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">3</div><h3>分清楚「這次才有的要求」和「Skill 本來就該做到的事」</h3></div>
+        <div class="qa">
+          <p>例如，「這篇不要用某個詞」是單篇要求，要在這次的指令或資料裡說明；「FAQ 不可與內文重複」如果本來就是團隊規範，就應該由 Skill 穩定執行。</p>
+        </div>
+      </div>
+
+      <p class="sec-sub" style="margin-top:22px">可以用下面這張表快速判斷：</p>
+      <div class="tblwrap">
+        <table>
+          <thead><tr><th>觀察方式</th><th>比較像本次指令或資料問題</th><th>比較像 Skill 問題</th></tr></thead>
+          <tbody>
+            <tr><th>開新對話重跑</th><td>恢復正常</td><td>仍出現同一錯誤</td></tr>
+            <tr><th>換文章或換資料</th><td>只有特定文章出錯</td><td>不同文章都出現</td></tr>
+            <tr><th>被漏掉的要求</th><td>這次臨時增加</td><td>原本就是固定規則</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="takeaway"><span>📌</span><span>這不是百分之百的診斷，但足以幫你決定下一步先查哪裡。</span></div>
+    </section>
+
+    <section>
+      <h2 class="sec"><span class="bar"></span>🛠️ 如果問題出在這次的指令或資料</h2>
+
+      <div class="skillbox">
+        <div class="checkgroup">🏗️ 產架構 Skill 常見檢查點（點一下打勾）</div>
+        <ul class="checks">
+          <li><span class="box"></span><span class="lbl">關鍵字分析和客戶訪談表是否都提供完整？</span></li>
+          <li><span class="box"></span><span class="lbl">文件權限是否讓 AI 能讀到需要的內容？</span></li>
+          <li><span class="box"></span><span class="lbl">PM 的重要交代若在留言或註解中，AI 實際上能不能讀到？</span></li>
+          <li><span class="box"></span><span class="lbl">Step 1 的待確認事項是否一次回答完整？</span></li>
+          <li><span class="box"></span><span class="lbl">編輯改過架構後，是否明確告知「以這一版為準」？</span></li>
+          <li><span class="box"></span><span class="lbl">交給下一階段的寫稿 prompt 是否完整貼上？</span></li>
+        </ul>
+
+        <div class="checkgroup">✍️ 產文章 Skill 常見檢查點（點一下打勾）</div>
+        <ul class="checks">
+          <li><span class="box"></span><span class="lbl">是否使用手冊指定的觸發語？</span></li>
+          <li><span class="box"></span><span class="lbl">文章架構、關鍵字分析和其他必要材料是否齊全？</span></li>
+          <li><span class="box"></span><span class="lbl">對焦確認表中的關鍵字、呈現方式、禁字與 FAQ 是否逐項確認？</span></li>
+          <li><span class="box"></span><span class="lbl">寫稿指令和待處理全文是否完整提供？</span></li>
+          <li><span class="box"></span><span class="lbl">是否依手冊要求一次處理一篇？</span></li>
+        </ul>
+      </div>
+      <p class="sec-sub" style="margin-top:12px">以上是內部流程，仍要以最新版操作手冊為準。若手冊與這篇內容不同，應以手冊為準並同步更新本文。</p>
+
+      <p class="sec-sub" style="margin-top:22px"><b>4 個更實用的寫法</b></p>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">1</div><h3>說明原因，不要只丟一條禁令</h3></div>
+        <div class="qa">
+          <p>Anthropic 的提示設計文件建議，除了說明要做什麼，也補上這項要求為什麼重要。這能幫助模型理解真正的目的，遇到相近情況時也比較容易做對。</p>
+          <p>不只寫：「這段不要寫價格。」</p>
+          <p>可以改成：「客戶的價格會調整，寫死後容易和現場資訊不一致。這段不要放固定價格，改成『實際費用以現場評估為準』。」</p>
+          <p>SEO 實務上也是同一個道理。Search Engine Land 談客戶資料管理的文章舉過一個例子：如果 AI 只知道「不要鎖定某個關鍵字」，它可能永遠避開這個字，就算情況已經改變也一樣；如果它知道背後的原因，之後遇到相近的判斷，才比較能做對。</p>
+        </div>
+        <div class="takeaway"><span>📌</span><span>作者的結論是：原因比決定本身更重要。</span></div>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">2</div><h3>大改時，重整後一次說清楚</h3></div>
+        <div class="qa">
+          <p>如果只補一個小地方，可以直接修正；但如果需求已經改了好幾次，最好先把最新版要求整理成一份，再開新對話重跑。這比在長對話裡一條一條補，更容易確認 AI 到底收到哪些條件。</p>
+        </div>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">3</div><h3>用「不熟案子的同事」測試指令</h3></div>
+        <div class="qa">
+          <p>Anthropic 把這稱為提示設計的黃金原則：把指令交給一位只知道基本背景的同事。如果對方看完仍不知道要用哪些資料、產出什麼格式或哪些規則優先，AI 也很可能誤解。</p>
+        </div>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">4</div><h3>測試時保留比較基準</h3></div>
+        <div class="qa">
+          <p>每次調整後，保留原本的輸入與輸出，再和新版本比較。若同時改了提示詞、資料和 Skill 規則，就很難知道是哪個變動真正有效。</p>
+          <p>Search Engine Land 那篇 context rot 的文章也是這樣建議：一次只改一個地方，重跑後和前一次的結果比較。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="sec"><span class="bar"></span>🧪 如果看起來像 Skill 的問題</h2>
+      <p class="sec-sub">接下來要做的，不是叫 AI 立刻重寫，而是先留下證據。</p>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">1</div><h3>確認 1：這條規則從哪裡來？</h3></div>
+        <div class="qa">
+          <p>適合用在2 種情況：AI 套用了你沒要求的規則，或寫進已經過期的資訊。可以這樣問：</p>
+        </div>
+        <div class="prompt"><span class="pl">可直接複製</span>你剛才的產出有一處不符合預期：＿＿＿＿。
+
+請先不要修改，先回答：
+1. 你依據哪個檔案或哪一段內容這樣寫？請附上原文。
+2. 我提供的資料中，有沒有其他地方寫了不同的規則？
+3. 如果資料互相矛盾，請整理成表格，列出檔案名稱、規則內容和差異。</div>
+        <div class="qa">
+          <p>回答可以提供線索，但不能直接當成證據。Search Engine Land 的文章也特別提醒，AI 說自己讀到哪裡，只能當作查找方向，最後仍要打開原始檔案或設定確認。</p>
+          <p>判讀時可以看這4 種情況：</p>
+        </div>
+        <div class="tblwrap">
+          <table>
+            <thead><tr><th>AI 指出的來源</th><th>下一步</th></tr></thead>
+            <tbody>
+              <tr><th>這次提供的訪談表、架構或分析文件</th><td>檢查版本、內容與權限</td></tr>
+              <tr><th>個人記憶或偏好設定</th><td>到設定中確認是否有過期或衝突內容</td></tr>
+              <tr><th>Skill 規則、範例或團隊共用檔案</th><td>確認內容是否過期、重複或互相矛盾</td></tr>
+              <tr><th>找不到來源，只是自行推測</th><td>這次先修正，若同類錯誤反覆出現，再回報 Skill 缺少約束</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">2</div><h3>確認 2：數字和事實真的有來源嗎？</h3></div>
+        <div class="qa">
+          <p>遇到規格、尺寸、價格、研究結果或療程資訊，最好另外開一個乾淨的對話，只放「要查的句子」和「指定來源」。不要把整份文章的論述一起丟進去，以免查核工作被原文的立場帶著走。</p>
+          <p>一篇 AAAI 2026 論文發現，模型容易附和使用者先表達的看法，即使那個看法與事實衝突；使用「我相信……」這類第一人稱說法時，附和傾向又比第三人稱表述更明顯。因此，查核時不要先暗示你希望它判定為真。可以直接使用這段：</p>
+        </div>
+        <div class="prompt"><span class="pl">可直接複製</span>請查核下面這句話是否能由指定來源佐證。
+
+【待查句子】
+＿＿＿＿
+
+【指定來源】
+＿＿＿＿
+
+請回答：
+1. 來源是否直接佐證這句話？請附上最相關的原文。
+2. 如果只能佐證其中一部分，請分別說明有依據和沒有依據的部分。
+3. 如果來源沒有提到，請直接回答「來源沒有提到」，不要用其他資料補充。</div>
+        <div class="qa">
+          <p>這段 prompt 參考了 Anthropic 官方的建議：允許 AI 說「不知道」，並要它貼出原文。這樣能減少 AI 亂編，但沒辦法完全避免。重要的數字，最後還是要自己確認一次。</p>
+          <p>另外，要查的不只內文。Google 官方指南提醒，AI 產出的標題、meta description、結構化資料和圖片 alt，也都要檢查。</p>
+        </div>
+      </div>
+
+      <div class="skillbox">
+        <p><b>為什麼數字要查這麼嚴？有 3 個原因：</b></p>
+        <ul>
+          <li><b>Google 最看重「可不可信」。</b>E-E-A-T 4 項裡，Google 明講信任最重要。它給的自我檢查題也直接問：「內容有沒有一查就知道的錯誤？」</li>
+          <li><b>醫美、保健文章的標準更高。</b>跟健康、財務有關的題目，Google 歸在 YMYL，要求內容高度正確、符合專家共識。</li>
+          <li><b>AI 搜尋特別愛引用數字。</b>GEO 研究（KDD 2024）發現，加入可信來源、引言和統計數字的內容，在 AI 搜尋回答中的能見度可提升 30～40%。也就是說，數字寫錯了，被 AI 引用出去的也會是錯的。</li>
+        </ul>
+        <p>最後再看錯誤是否具有共通性：</p>
+        <ul>
+          <li>只有這篇的數字對不上，先刪除或修正，並回頭處理這篇的來源。</li>
+          <li>不同文章反覆出現同類錯誤，例如規格常錯、引文經常對不上，再回報 Skill 的查核或來源使用規則。</li>
+        </ul>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">?</div><h3>機器檢查沒過，但人看起來沒問題</h3></div>
+        <div class="qa">
+          <p>先確認檢查器實際量的是什麼。若它把標題、表格或不該計入的區塊一起計算，可以提出理由，要求重新檢查。</p>
+          <p>但外部明訂的要求不能自行放寬，例如法規禁用詞、客戶合約、PM 規定的字數或交付格式。這些若要修改，應由負責人確認。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="sec"><span class="bar"></span>📋 回報時，怎麼寫才真的修得動？</h2>
+      <p class="sec-sub">「文章怪怪的」很難追查。有效的回報至少要讓維護者知道：錯誤發生在哪一步、AI 當時讀了哪些資料、預期結果是什麼，以及你已經排除了哪些可能。</p>
+      <p class="sec-sub">這和 Search Engine Land 談客戶資料管理時提到的原則一致：每一筆寫進共用資料的事實，都要附上來源，例如會議紀錄、客戶原話或工具輸出。沒有來源，就不寫進去。回報也是一樣，附上原句與資料版本，維護者才查得到問題出在哪。</p>
+      <p class="sec-sub">遇到問題時，可以先用下面的格式自己記下來，最後再統整給維護者：</p>
+
+      <div class="prompt"><span class="pl">回報格式</span>・使用的 Skill 與步驟：＿＿＿＿
+・客戶、主題與日期：＿＿＿＿
+・提供的資料：＿＿＿＿，請附版本與權限狀態
+・實際問題：＿＿＿＿，直接貼原句
+・預期結果：＿＿＿＿
+・已做的測試：＿＿＿＿，例如開新對話仍重現、換文章也重現
+・AI 指出的規則來源：＿＿＿＿，若有詢問再填
+・事實或數字查核結果：＿＿＿＿
+・影響與暫時處理方式：＿＿＿＿</div>
+
+      <div class="skillbox">
+        <p>例如，不要只寫：「產文章 Skill 寫的療程資訊怪怪的。」</p>
+        <p>可以改成：</p>
+        <ul>
+          <li>使用的 Skill 與步驟：產文章 Skill，完稿階段</li>
+          <li>客戶、主題與日期：○○診所／○○療程／10 月 20 日</li>
+          <li>提供的資料：文章架構、關鍵字分析、10 月 15 日版訪談表，權限皆已開啟</li>
+          <li>實際問題：「本院另提供 △△ 療程……」</li>
+          <li>預期結果：只能寫訪談表列出的3 種療程，△△ 已在 9 月停止</li>
+          <li>已做的測試：開新對話仍重現；同一客戶的另一篇文章也出現</li>
+          <li>AI 指出的來源：客戶資料檔中的服務清單</li>
+          <li>查核結果：不適用</li>
+          <li>影響與處理：內容會交付客戶，目前已先刪除錯誤句子</li>
+        </ul>
+        <div class="takeaway"><span>📌</span><span>這樣維護者才能追查是舊資料、衝突規則、錯誤範例，還是 Skill 少了一道必要檢查。</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="sec"><span class="bar"></span>🔑 最後記住這個順序</h2>
+      <p class="sec-sub">AI 的產出不對勁時，不用一開始就猜是誰的錯。照順序做就好：</p>
+      <div class="callout">🔸 1. 開新對話，用同一批資料重跑。<br>🔸 2. 換一篇或換一組資料，看問題能不能重現。<br>🔸 3. 分清楚這是單篇要求，還是 Skill 本來就該遵守的規則。<br>🔸 4. 若像 Skill 問題，追查規則來源並查核重要事實。<br>🔸 5. 回報時附上原句、資料版本、重現方式和暫時處理結果。</div>
+      <div class="takeaway"><span>📌</span><span>調好自己的指令，能讓你更精準地用好 Skill；把 Skill 的問題說清楚，能讓整個團隊少踩一次坑。2 件事一起做，Skill 才會越用越順手。</span></div>
+    </section>
+
+    <section>
+      <h2 class="sec"><span class="bar"></span>📎 參考資料</h2>
+      <p class="sec-sub"><b>SEO／GEO 相關</b></p>
+      <div class="srcs">
+        <a href="https://searchengineland.com/context-engineering-prevent-ai-workflows-degrading-494025" target="_blank" rel="noopener"><span class="dot">▸</span>Context engineering: How to prevent AI workflows from degrading（Tania Brown，2026-10-08）<span class="site">Search Engine Land</span></a>
+        <a href="https://searchengineland.com/client-brain-ai-context-seo-479095" target="_blank" rel="noopener"><span class="dot">▸</span>How a 'client brain' gives AI the context SEO work needs（Igal Stolpner）<span class="site">Search Engine Land</span></a>
+        <a href="https://developers.google.com/search/docs/fundamentals/using-gen-ai-content" target="_blank" rel="noopener"><span class="dot">▸</span>Google Search's guidance on using generative AI content on your website（頁面標示 2026-10-01 更新）<span class="site">Google Search Central</span></a>
+        <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" target="_blank" rel="noopener"><span class="dot">▸</span>Creating helpful, reliable, people-first content（頁面標示 2026-10-05 更新）<span class="site">Google Search Central</span></a>
+        <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener"><span class="dot">▸</span>GEO: Generative Engine Optimization（Aggarwal 等，KDD 2024）<span class="site">arXiv</span></a>
+      </div>
+      <p class="sec-sub" style="margin-top:16px"><b>AI 使用與研究</b></p>
+      <div class="srcs">
+        <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" target="_blank" rel="noopener"><span class="dot">▸</span>Prompting best practices<span class="site">Anthropic</span></a>
+        <a href="https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations" target="_blank" rel="noopener"><span class="dot">▸</span>Reduce hallucinations<span class="site">Anthropic</span></a>
+        <a href="https://iclr.cc/virtual/2026/oral/10009147" target="_blank" rel="noopener"><span class="dot">▸</span>LLMs Get Lost In Multi-Turn Conversation（Laban 等，ICLR 2026 口頭報告）<span class="site">ICLR</span></a>
+        <a href="https://ojs.aaai.org/index.php/AAAI/article/view/40645" target="_blank" rel="noopener"><span class="dot">▸</span>When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models（Wang 等）<span class="site">AAAI 2026</span></a>
+      </div>
+      <p class="sec-sub" style="margin-top:16px"><b>內部依據，需由團隊確認最新版</b></p>
+      <div class="callout">🔸 產架構 Skill（welly-needfirst-writer）：輸入資料、Step 1 至 Step 4 流程、以編輯確認版為準<br>🔸 產文章 Skill（welly-seo-article-writer）：材料清單、權限、對焦確認表、異常處理與檢查規則<br>🔸 編輯回饋紀錄：架構工具 19 篇回饋、文章審稿回饋及其後續 Skill 規則</div>
+    </section>
+
+    <a class="poll pollcta" style="margin-top:44px" href="https://wellyseo.slack.com/archives/C0BE8QB42P7" target="_blank" rel="noopener">
+      <h2>🙌 本週接力：你來判斷，問題出在哪？</h2>
+      <p>回想一次 AI 寫歪的經驗，試著用前面的「3 個測試」判斷看看：問題比較可能出在指令、資料，還是 Skill？</p>
+      <p style="margin-top:10px">留言可以這樣寫：「我遇過＿＿＿＿。我判斷是＿＿＿＿的問題，因為＿＿＿＿。」<br>例如：「我遇過架構漏掉 PM 留言裡的關鍵字。我判斷是資料的問題，因為換一篇就正常。後來才發現，原本的關鍵字分析沒有開放編輯權限。」</p>
+      <p style="margin-top:10px">暫時判斷不出來也沒關係，直接寫「還不確定」就好。如果你覺得不只一種原因，也歡迎把可能性都寫下來。這類情況，也正值得大家一起討論。</p>
       <span class="slackcta"><span class="ico">💬</span> 到 #ai-yoyo-tv 留言接力</span>
     </a>
   </div>
