@@ -195,6 +195,22 @@
   .slackcta{display:inline-flex;gap:8px;align-items:center;margin-top:16px;background:var(--accent);
     color:#fff;font-weight:700;font-size:14px;border-radius:999px;padding:10px 20px}
   footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 0 10px}
+
+  /* 往期回顧：點擊展開＋可上下捲動 */
+  button.eplabel{all:unset;grid-column:1/-1;order:-1;cursor:pointer;display:flex;align-items:center;justify-content:space-between;
+    font-size:13px;font-weight:700;letter-spacing:2px;color:var(--muted);margin:10px 0 0;padding:12px 16px;
+    border:1px solid var(--line);border-radius:14px;background:var(--card);transition:.15s}
+  button.eplabel:hover{border-color:var(--accent);color:var(--accent)}
+  button.eplabel .arr{transition:transform .2s;font-size:12px}
+  .epnav.open button.eplabel .arr{transform:rotate(180deg)}
+  .pastlist{grid-column:1/-1;display:none;grid-template-columns:repeat(3,1fr);gap:10px;
+    max-height:300px;overflow-y:auto;padding:4px 4px 6px;margin-top:-2px;overscroll-behavior:contain}
+  .epnav.open .pastlist{display:grid}
+  @media(max-width:620px){.pastlist{grid-template-columns:repeat(2,1fr)}}
+  /* 表格：表頭欄可換行，避免短欄撐大 */
+  table.wrapth{min-width:0}
+  table.wrapth tbody th{white-space:normal}
+  table.col-wide2 th:first-child,table.col-wide2 tbody th{width:34%}
 </style>
 </head>
 <body>
@@ -210,38 +226,45 @@
   </div>
 
   <div class="epnav" id="epnav">
-    <div class="epbtn" data-ep="1">
-      <div class="no">EP.01</div>
-      <div class="tt">Claude 的 3 種打開方式</div>
-    </div>
-    <div class="epbtn" data-ep="2">
-      <div class="no">EP.02</div>
-      <div class="tt">SEO 編輯的第一批 Skill</div>
-    </div>
-    <div class="epbtn" data-ep="3">
-      <div class="no">EP.03</div>
-      <div class="tt">ChatGPT／Claude／Gemini 怎麼選？</div>
-    </div>
-    <div class="epbtn" data-ep="4">
-      <div class="no">EP.04</div>
-      <div class="tt">跟 AI 寫 SEO 文章的 11 個誤會</div>
-    </div>
-    <div class="epbtn" data-ep="5">
-      <div class="no">EP.05</div>
-      <div class="tt">Claude Tag 怎麼用、怎麼玩</div>
-    </div>
-    <div class="epbtn" data-ep="6">
-      <div class="no">EP.06</div>
-      <div class="tt">AI 越來越會寫 SEO 文章，內容還能怎麼做出差異？</div>
-    </div>
-    <div class="epbtn latest on" data-ep="7">
+    <div class="epbtn latest on" data-ep="8">
       <div class="lt-body">
-        <div class="no">最新一集 · EP.07 <span class="newpill">NEW</span></div>
-        <div class="tt">AI 產出和預期不一樣？用 3 個測試找出可以優化的地方</div>
+        <div class="no">最新一集 · EP.08 <span class="newpill">NEW</span></div>
+        <div class="tt">客戶丟來一長串 AI 意見，編輯該怎麼接招？</div>
       </div>
       <div class="lt-go">閱讀本集 →</div>
     </div>
-    <div class="eplabel">📚 往期回顧</div>
+    <button type="button" class="eplabel" id="pasttoggle" aria-expanded="false">📚 往期回顧（7 集）<span class="arr">▾</span></button>
+    <div class="pastlist" id="pastlist">
+      <div class="epbtn" data-ep="7">
+        <div class="no">EP.07</div>
+        <div class="tt">AI 產出和預期不一樣？用 3 個測試找出可以優化的地方</div>
+      </div>
+      <div class="epbtn" data-ep="6">
+        <div class="no">EP.06</div>
+        <div class="tt">AI 越來越會寫 SEO 文章，內容還能怎麼做出差異？</div>
+      </div>
+      <div class="epbtn" data-ep="5">
+        <div class="no">EP.05</div>
+        <div class="tt">Claude Tag 怎麼用、怎麼玩</div>
+      </div>
+      <div class="epbtn" data-ep="4">
+        <div class="no">EP.04</div>
+        <div class="tt">跟 AI 寫 SEO 文章的 11 個誤會</div>
+      </div>
+      <div class="epbtn" data-ep="3">
+        <div class="no">EP.03</div>
+        <div class="tt">ChatGPT／Claude／Gemini 怎麼選？</div>
+      </div>
+      <div class="epbtn" data-ep="2">
+        <div class="no">EP.02</div>
+        <div class="tt">SEO 編輯的第一批 Skill</div>
+      </div>
+      <div class="epbtn" data-ep="1">
+        <div class="no">EP.01</div>
+        <div class="tt">Claude 的 3 種打開方式</div>
+      </div>
+    </div>
+
   </div>
 
   <!-- ============ EP1 ============ -->
@@ -1357,7 +1380,7 @@
   </div>
 
   <!-- ============ EP7 ============ -->
-  <div class="episode on" data-ep="7">
+  <div class="episode" data-ep="7">
     <div class="ephead">
       <div class="epk">第七集</div>
       <h2>AI 產出和預期不一樣？用 3 個測試，找出可以優化的地方</h2>
@@ -1634,8 +1657,378 @@
     <a class="poll pollcta" style="margin-top:44px" href="https://wellyseo.slack.com/archives/C0BE8QB42P7" target="_blank" rel="noopener">
       <h2>🙌 本週接力：你來判斷，問題出在哪？</h2>
       <p>回想一次 AI 寫歪的經驗，試著用前面的「3 個測試」判斷看看：問題比較可能出在指令、資料，還是 Skill？</p>
-      <p style="margin-top:10px">留言可以這樣寫：「我遇過＿＿＿＿。我判斷是＿＿＿＿的問題，因為＿＿＿＿。」<br>例如：「我遇過架構漏掉 PM 留言裡的關鍵字。我判斷是資料的問題，因為換一篇就正常。後來才發現，原本的關鍵字分析沒有開放編輯權限。」</p>
+      <p style="margin-top:10px">留言可以這樣寫：「我遇過＿＿＿＿。我判斷是＿＿＿＿的問題，因為＿＿＿＿。」<br>例如：「我遇過架構沒把客戶主打的療程放前面。我判斷是資料的問題，因為其他篇都正常。後來發現關鍵字分析和訪談表的主打療程寫得不一樣。」</p>
       <p style="margin-top:10px">暫時判斷不出來也沒關係，直接寫「還不確定」就好。如果你覺得不只一種原因，也歡迎把可能性都寫下來。這類情況，也正值得大家一起討論。</p>
+      <span class="slackcta"><span class="ico">💬</span> 到 #ai-yoyo-tv 留言接力</span>
+    </a>
+  </div>
+
+  <!-- ============ EP8 ============ -->
+  <div class="episode on" data-ep="8">
+    <div class="ephead">
+      <div class="epk">第八集</div>
+      <h2>客戶丟來一長串 AI 意見，編輯該怎麼接招？</h2>
+      <div class="date">🗓️ 10 月 28 日上架</div>
+    </div>
+
+    <div class="keyline">🔑 一句話記住這集<br>面對 AI 意見，編輯要做的是<b>判斷</b>，而不是<b>照單全收</b>。</div>
+
+    <div class="src-note" style="margin-top:18px">本集參考 <b>OpenAI</b>、<b>Google Search Central</b> 官方文件、<b>Harvard Business Review</b> 與近期 AI 研究整理。</div>
+
+    <div class="introlead">
+      <p>現在不只我們會用 AI 產架構、寫文章，越來越多客戶也開始用 AI 審稿。你可能也遇過：客戶回傳一份落落長、條列清楚又語氣專業的修改建議，仔細看卻有濃濃的 AI 味。</p>
+      <p>這不只是我們的狀況。Forrester 與 4As 2026 年研究指出，美國 9 成行銷代理商已在使用生成式 AI；Orbit Media 2026 年調查也發現，92.4% 的內容行銷人在部落格工作中使用 AI，從撰寫初稿到建議修改都有。</p>
+      <p>但 AI 的建議不一定符合文章原本的目的。照單全收，品牌特色可能越改越模糊，SEO 架構也可能被打亂。意見再有條理，編輯仍要判斷它是否符合品牌需求、內容事實與 SEO 策略。</p>
+      <div class="quote">💬 那麼，遇到客戶提供大量 AI 修改意見時，<b>編輯究竟該怎麼判斷、怎麼回覆，才能兼顧客戶需求與內容品質？</b></div>
+      <p>這集會依照以下順序，帶大家一步步拆解：</p>
+      <ul>
+        <li><b>先看情境：</b>盤點 4 種編輯可能遇到的 AI 審稿狀況</li>
+        <li><b>再看原因：</b>了解 AI 為什麼會提出這些建議</li>
+        <li><b>編輯怎麼做：</b>掌握 5 個處理步驟，讓修改更有方向</li>
+        <li><b>往後看：</b>提前認識未來可能遇到的客戶需求與挑戰</li>
+      </ul>
+    </div>
+
+    <section>
+      <h2 class="sec"><span class="bar"></span>🧩 當客戶審稿也在積極使用 AI...</h2>
+      <p class="sec-sub">（以下情境為示意，並非實際案例）</p>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">1</div><h3>意見又多又完整，卻缺少品牌的第一手資訊</h3></div>
+        <div class="qa">
+          <p>客戶一次貼回兩頁 AI 建議，希望我們補充「產業趨勢」「常見迷思」「國外研究怎麼說」等內容。</p>
+          <p>乍看之下，這些建議確實能讓文章更豐富。但仔細檢查會發現，新增的幾乎都是網路上隨手可得的通用資訊，真正能展現品牌特色的療程經驗、門市數據，或醫師與專業人員的第一手觀點，反而完全沒有提到。</p>
+          <p>結果文章越寫越長，內容卻和競品越來越相似，客戶原本最值得強調的優勢也被稀釋了。</p>
+        </div>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">2</div><h3>客戶用 AI 改完整篇文章，SEO 架構卻被打亂</h3></div>
+        <div class="qa">
+          <p>客戶直接把文章丟給 AI 重寫，回傳的版本看起來更通順，卻出現不少問題：</p>
+          <ul>
+            <li>H2 順序被重新調整，主要關鍵字也從標題消失</li>
+            <li>前言變得更長，讀者要看完好幾段才找得到答案</li>
+            <li>原本方便閱讀的 FAQ，被改寫成大段文字</li>
+            <li>具有實務經驗的內容被刪掉，換成較通用、制式的說法</li>
+          </ul>
+          <p>表面上文字變得更流暢，但原本依照搜尋意圖安排的內容順序、關鍵字布局與閱讀體驗，反而受到影響。</p>
+        </div>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">3</div><h3>AI 建議看似專業，資訊卻不一定正確</h3></div>
+        <div class="qa">
+          <p>AI 建議文章加上一句：「某成分經臨床證實，能改善 9 成問題。」</p>
+          <p>這句話聽起來很有說服力，但當我們實際查證時，卻找不到對應的研究來源。即使真的有相關研究，這種功效表述也不一定符合台灣法規，貿然放進文章反而可能增加風險。</p>
+        </div>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">4</div><h3>每一輪 AI 意見都不同，文章永遠改不完</h3></div>
+        <div class="qa">
+          <p>第一輪 AI 建議「內容不夠完整，應該增加更多說明」，第二輪又說「文章太過冗長，建議精簡」。</p>
+          <p>客戶每次重新詢問 AI，就收到一份不同的審稿意見。編輯只好跟著反覆修改，明明已經調整過的內容，下一輪又得重新處理，讓修改遲遲無法結束。</p>
+        </div>
+      </div>
+
+      <p class="sec-sub" style="margin-top:22px"><b>一味接受，可能帶來哪些影響？</b></p>
+      <div class="tblwrap">
+        <table class="wrapth">
+          <thead><tr><th>照單全收的做法</th><th>可能的影響</th></tr></thead>
+          <tbody>
+            <tr><th>補上大量通用資訊</th><td>文章與競品越來越相似，品牌特色與差異化優勢被稀釋</td></tr>
+            <tr><th>加入來源不明的數據</th><td>錯誤資訊影響品牌信任度，健康、醫療等主題更可能涉及法規風險</td></tr>
+            <tr><th>完全照 AI 建議調整架構、標題</th><td>內容偏離原本的搜尋意圖，關鍵字布局也可能受到影響</td></tr>
+            <tr><th>不斷增加文章篇幅</th><td>文章變長，卻不一定更完整，反而讓讀者更難找到重點</td></tr>
+            <tr><th>每一輪意見都照改</th><td>修改缺乏明確終點，導致時程延誤、溝通與製作成本增加</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="sec"><span class="bar"></span>🔍 AI 意見為什麼會長這樣？先認識 5 個常見特性</h2>
+      <p class="sec-sub">想知道該怎麼處理 AI 意見，得先了解 AI 本身有哪些特性。有些建議看起來很專業，不代表資訊一定正確；有些修改讓文字變長、變流暢，也不代表文章品質真的提升。以下透過 5 個特性，幫助大家看懂這些 AI 意見背後可能存在的問題。</p>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">1</div><h3>AI 也會講錯，而且講得很有自信</h3></div>
+        <div class="qa">
+          <p>AI 為什麼會一本正經地講錯？OpenAI 在 2025 年的研究中用「考選擇題」來比喻：不會的題目亂猜還有機會得分，空白不寫一定零分。所以比起老實說「我不知道」，AI 更傾向給出一個看起來合理的答案。</p>
+          <ul>
+            <li>研究人員問 AI 一位論文作者的博士論文標題，AI 很有自信地給了 3 個答案，結果 3 個都錯。</li>
+            <li>OpenAI 較早期的 o4-mini 模型在事實問答測驗中幾乎題題作答，答錯率卻高達 75%。</li>
+          </ul>
+          <p>連專業領域也難以倖免。2026 年《刺胳針》（The Lancet）刊出的調查發現，醫學論文引用「根本不存在的文獻」的比例，從 2023 年每 2,828 篇有 1 篇，增加到 2026 年初每 277 篇就有 1 篇，增加的時間點正好和 AI 寫作工具普及重疊。</p>
+          <p>Google 在〈使用生成式 AI 內容的指南〉中也提醒：AI 產出的內容可能有錯，發布前應由人工查核。</p>
+        </div>
+        <div class="takeaway"><span>📌</span><span><b>對編輯來說：</b>客戶透過 AI 補充的數據、研究、產品功效等說法，都應先視為「待查證資訊」。研究名稱、期刊、數字寫得越具體，越要確認原始來源是否真的存在。</span></div>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">2</div><h3>AI 容易順著提問者的想法回答</h3></div>
+        <div class="qa">
+          <p>2026 年一項醫療主題研究，透過超過 120 萬次測試，發現 AI 在對話中可能出現「迎合使用者」的傾向，例如：</p>
+          <ul>
+            <li>AI 已經提出答案後，如果使用者進一步反駁，AI 改口附和的可能性，約是一開始就受到誤導時的 3 倍。</li>
+            <li>當使用者自稱是醫師或醫學生時，AI 也更容易受到影響而改變回答。</li>
+          </ul>
+          <p>套用到客戶審稿的情境，如果客戶問 AI：「這篇文章是不是太短、不夠完整？」AI 就可能順著問題的方向，回答：「是的，建議增加以下內容……」</p>
+          <p>同樣地，當客戶以品牌方或專業人士的身分提出看法時，也可能影響 AI 的判斷。</p>
+        </div>
+        <div class="takeaway"><span>📌</span><span><b>對編輯來說：</b>AI 提出的建議，有時只是放大了客戶原本的疑慮，不代表文章真的存在相同問題。因此，與其急著修改，不如先了解客戶當初為什麼會這樣問。</span></div>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">3</div><h3>AI 當評審，可能更偏好 AI 寫出來的文字</h3></div>
+        <div class="qa">
+          <p>NeurIPS 2024 的一項研究發現，當 AI 擔任內容評審時，可能對自己生成的文字給出更高評價，即使人類評審認為兩者品質相近，這種偏好仍可能存在。</p>
+          <p>雖然該研究主要測試的是新聞摘要，而不是 SEO 文章，但對編輯工作仍有值得參考的地方。</p>
+          <p>例如，原稿可能包含客戶的真實經驗、專業觀點與品牌語氣，但 AI 重寫後，反而變成比較制式、通用的說法，甚至還會評價新版本「更專業、更完整」。</p>
+        </div>
+        <div class="takeaway"><span>📌</span><span><b>對編輯來說：</b>文字更像 AI 偏好的寫法，不代表內容真的更好。尤其第六集才提到，我們應該努力補進 AI 難以自行取得的第一手素材與觀點，而不是把這些有價值的內容改掉。</span></div>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">4</div><h3>AI 容易偏好較長的內容，但文章不是越長越好</h3></div>
+        <div class="qa">
+          <p>在 AI 評分與內容審查的相關研究中，也曾觀察到與篇幅有關的偏誤。</p>
+          <ul>
+            <li><b>NeurIPS 2023 的研究：</b>Zheng 等人指出，AI 作為評審時，可能存在「冗長偏誤」（Verbosity Bias），傾向給較長的答案更高評價。</li>
+            <li><b>ICML 2026 的審稿實驗：</b>研究發現，可以使用 AI 協助的審稿人，所撰寫的審稿意見平均增加了約 5.5～7% 的篇幅。這不直接代表 AI 偏好長文，但也顯示 AI 工具可能改變文字產出的長度。</li>
+          </ul>
+          <p>另一方面，Google 在〈建立實用可靠的內容〉指南中，也特別提醒創作者：是不是因為聽說 Google 偏好特定字數，才刻意把文章寫到那個長度？</p>
+          <p>Google 對此明確表示，搜尋系統並沒有偏好的文章字數。</p>
+        </div>
+        <div class="takeaway"><span>📌</span><span><b>對編輯來說：</b>當 AI 建議「再補充一點」「內容可以更豐富」時，先別急著加字，而是要思考：這些內容真的能解決讀者的問題嗎？還是只是把原本已經說清楚的事情再講一次？</span></div>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">5</div><h3>內容看起來很完整，實際價值卻不高（Workslop）</h3></div>
+        <div class="qa">
+          <p>2025 年 9 月，Harvard Business Review（HBR）刊登 BetterUp Labs 與史丹佛大學研究者的文章，提出「Workslop」這個概念：用 AI 快速產出看似完整、專業，實際上卻缺乏實質價值的工作內容。研究指出：</p>
+          <ul>
+            <li>約 41% 的受訪上班族表示，過去一個月曾收到這類 AI 產出。</li>
+            <li>每次收到後，平均需要花費將近 2 小時釐清、修正或重新處理。</li>
+          </ul>
+          <p>編輯收到大量 AI 意見也是類似的情況：看似問題都整理好了，實際上還得逐一確認哪些正確、哪些值得改、哪些根本與文章無關。</p>
+        </div>
+        <div class="takeaway"><span>📌</span><span><b>對編輯來說：</b>意見很長、條列很整齊，不代表每一項都有修改價值。比起逐條照做，更重要的是先找出真正需要處理的重點。</span></div>
+      </div>
+
+      <p class="sec-sub" style="margin-top:22px"><b>5 個特性，整理成一張表</b></p>
+      <div class="tblwrap">
+        <table class="wrapth">
+          <thead><tr><th>AI 的特性</th><th>在客戶意見中常見的表現</th><th>編輯應對方向</th></tr></thead>
+          <tbody>
+            <tr><th>可能產生錯誤資訊</th><td>建議加入數據、研究或產品功效</td><td>先查證來源與正確性</td></tr>
+            <tr><th>容易迎合提問者</th><td>「確實不夠完整」「建議再補充」</td><td>釐清客戶真正擔心的問題</td></tr>
+            <tr><th>可能偏好 AI 生成的文字</th><td>把第一手經驗改成通用、制式的說法</td><td>保留具有差異化的內容與品牌語氣</td></tr>
+            <tr><th>可能偏好較長的內容</th><td>「再豐富一點」「可以寫得更詳細」</td><td>確認增加篇幅是否真的有價值</td></tr>
+            <tr><th>產出可能流於 Workslop</th><td>提供大量建議，卻缺少優先順序與具體依據</td><td>先分類、抓重點，再決定怎麼修改</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="sec"><span class="bar"></span>🛠️ SEO 編輯該怎麼做？掌握 5 個步驟，不再被 AI 意見牽著走</h2>
+      <p class="sec-sub">了解 AI 的特性後，接下來就是最重要的實戰環節！當客戶一次提供大量 AI 修改意見時，不需要立刻逐條修改，而是可以依照以下 5 個步驟處理。</p>
+      <div class="quote" style="margin-top:12px">💬 <b>為什麼要照這個順序？</b>因為我們得先知道客戶真正想解決什麼問題，才能避免改錯方向；接著確認資訊是否正確，再進一步判斷是否符合 SEO 需求。畢竟，如果資訊本身就是錯的，也沒有必要討論該放在哪個段落。</div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">1</div><h3>先確認客戶期待，找出真正想解決的問題（最優先）</h3></div>
+        <div class="qa">
+          <p>客戶雖然提供了兩頁修改意見，但背後真正重視的，可能只有一兩件事。例如：</p>
+          <ul>
+            <li>看到競品文章寫得比較多，擔心自己的文章不夠專業</li>
+            <li>老闆或主管看過文章，認為某些資訊還不夠完整</li>
+            <li>希望文章能多介紹自家產品、療程或服務</li>
+            <li>擔心品牌沒有出現在 AI 搜尋結果中，想知道該怎麼改善</li>
+          </ul>
+          <p>因此，比起直接照著 AI 建議修改，更重要的是先確認客戶這次最希望改善的地方。回覆客戶時，可以從以下幾個方向切入，釐清客戶真正的需求：</p>
+          <ul>
+            <li><b>修改目的：</b>這次調整最想解決的是什麼問題？是內容不夠完整、不夠專業，還是和品牌想傳達的方向有落差？</li>
+            <li><b>優先順序：</b>在這麼多建議中，客戶最在意的是哪幾項？哪些只是參考、哪些是一定要處理的？</li>
+            <li><b>意見來源：</b>這些意見來自客戶自己的判斷、主管或其他部門的回饋，還是 AI 審稿的建議？如果是 AI，當初是請它確認哪個方向？</li>
+            <li><b>參考對象：</b>客戶心中是否有參考的競品或範例文章？想向對方看齊的是哪一點？</li>
+            <li><b>品牌素材：</b>有沒有我們還沒掌握的第一手資訊，例如服務特色、實際案例、內部數據或專業人員的說法？</li>
+            <li><b>限制條件：</b>有沒有一定要提、或絕對不能出現的內容？</li>
+          </ul>
+          <p>不一定要一次全部問完，挑出和這次意見最相關的 2～3 個方向即可，讓客戶容易回答，也能讓溝通更聚焦。</p>
+        </div>
+        <div class="takeaway"><span>📌</span><span>這樣不只比較容易了解客戶需求，也能避免後續反覆修改，卻始終沒有解決真正的問題。</span></div>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">2</div><h3>釐清修改範圍，把意見分成 4 類</h3></div>
+        <div class="qa">
+          <p>確認客戶期待後，接著要做的不是立刻修改，而是先幫意見分類。</p>
+          <p>因為不是所有修改要求，都應該由編輯自行決定。有些涉及客戶的品牌與產品資訊，有些需要查證，有些屬於 SEO 專業判斷，也有些可能已經超出原本的文章範圍。</p>
+        </div>
+        <div class="tblwrap">
+          <table class="wrapth">
+            <thead><tr><th>意見類別</th><th>常見例子</th><th>建議處理方式</th></tr></thead>
+            <tbody>
+              <tr><th>客戶說了算</th><td>產品事實、服務項目、價格、品牌立場、不能提及的內容</td><td>以客戶提供的正式資訊為準，有疑問再確認</td></tr>
+              <tr><th>需要查證</th><td>AI 補充的數據、研究、功效、產品規格</td><td>進入 Step 3，確認資訊正確性</td></tr>
+              <tr><th>SEO 專業判斷</th><td>文章架構、H2 標題、關鍵字位置、篇幅、FAQ</td><td>進入 Step 4，評估是否符合搜尋意圖與 SEO 策略</td></tr>
+              <tr><th>超出文章範圍</th><td>新增其他主題、修改其他頁面、調整整站內容策略</td><td>記錄並交由 PM 評估，也可能發展成新的文章選題</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="takeaway"><span>📌</span><span>如果客戶提出增加大量篇幅、超出原訂修改輪次，或涉及合約以外的需求，也不要直接答應，應先交由 PM 確認處理方式。</span></div>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">3</div><h3>查證資訊正確性，優先補進真正有價值的內容</h3></div>
+        <div class="qa">
+          <p>完成分類後，接著處理所有需要查證的資訊。這一步最重要的原則是：<b>AI 提供的資料，都應先視為尚未查證，而不是已經確認的事實。</b></p>
+          <p>建議把握以下 4 個重點：</p>
+          <ul>
+            <li><b>先確認來源，再決定是否採用：</b>遇到數字、研究、產品功效等說法，應優先尋找原始研究、官方資料或其他可靠來源。若無法取得足以佐證該說法的依據，就不要直接放進文章。</li>
+            <li><b>善用第七集的查核 Prompt：</b>可以另外開啟一個 AI 對話視窗，只提供「需要查證的句子」與「參考來源」，降低受到原本文章內容影響的機會。</li>
+            <li><b>保健、醫美、化粧品內容要特別注意法規：</b>AI 很容易產出吸引人的功效描述，但這些用語不一定符合相關規範，應搭配法規文案 Skill 進行檢查。</li>
+            <li><b>先參考權威資料，再請客戶確認實際狀況：</b>例如 AI 建議補充「術後恢復期」，可以先參考 SERP 上官方機構、醫學會或專業醫療網站的資料，整理重點並附上來源網址給客戶，再請客戶確認是否符合實際做法、有沒有要補充或修正的地方。</li>
+          </ul>
+          <p>最後一點尤其重要！補進醫師的實務經驗、品牌的服務流程或第一手數據，文章不只更完整，也更能和競品做出區隔。</p>
+        </div>
+        <div class="takeaway"><span>📌</span><span>這也呼應 Google 對主要內容品質的提醒：單純引用或整理其他來源，不能取代內容創作者本身的原創努力。</span></div>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">4</div><h3>回到 SEO 視角，確認修改是否真的對文章有幫助</h3></div>
+        <div class="qa">
+          <p>資訊確認正確後，下一步才是判斷這些建議適不適合放進文章。畢竟，一段內容就算沒有事實錯誤，也不代表一定符合這篇文章的定位與讀者需求。</p>
+          <p>建議每一項修改都先問自己以下 5 個問題：</p>
+        </div>
+        <div class="skillbox">
+          <div class="checkgroup">✅ SEO 視角 5 題檢查（點一下打勾）</div>
+          <ul class="checks">
+            <li><span class="box"></span><span class="lbl"><b>符合搜尋意圖嗎？</b>新增或調整的內容，真的是讀者搜尋這個關鍵字時想知道的資訊嗎？</span></li>
+            <li><span class="box"></span><span class="lbl"><b>會影響原本的 SEO 架構嗎？</b>H2 順序、主要關鍵字位置，以及文章前段的重要答案，有沒有被改動？</span></li>
+            <li><span class="box"></span><span class="lbl"><b>會和網站其他文章重複嗎？</b>新增的段落是否與客戶網站上的既有文章高度重疊，造成主題定位不清？</span></li>
+            <li><span class="box"></span><span class="lbl"><b>增加篇幅真的有幫助嗎？</b>內容變長，是因為回答得更完整，還是只是把相同觀點換句話說？</span></li>
+            <li><span class="box"></span><span class="lbl"><b>品牌的第一手內容還在嗎？</b>原本具有經驗、觀點或差異化特色的段落，有沒有被刪除或改成通用說法？</span></li>
+          </ul>
+        </div>
+        <div class="takeaway"><span>📌</span><span>如果某項修改無法明確說明它對讀者或文章的幫助，就值得再跟客戶討論，而不是直接照著改。</span></div>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">5</div><h3>回覆客戶時附上理由，並保留修改紀錄</h3></div>
+        <div class="qa">
+          <p>如果客戶一次提供十幾條 AI 意見，直接一條條回覆，很容易漏掉或前後說法不一致。建議分成兩步處理：</p>
+          <p><b>第一步：先用表格幫自己整理。</b></p>
+          <p>把每條意見的處理方式和理由列成表格，就能一眼看出哪些要改、哪些要保留，也比較容易發現彼此矛盾的意見。這張表也可以直接當作修改紀錄，方便 PM 掌握狀況。</p>
+        </div>
+        <div class="tblwrap">
+          <table class="wrapth">
+            <thead><tr><th>客戶意見</th><th>處理方式</th><th>說明與建議</th></tr></thead>
+            <tbody>
+              <tr><th>希望補充產業趨勢</th><td>調整後採用</td><td>建議精簡帶過產業背景，並優先補充品牌自身的數據或實務經驗</td></tr>
+              <tr><th>加入「臨床證實 9 成有效」</th><td>不採用</td><td>目前查無足以佐證該說法的原始研究，且可能涉及法規風險，建議改用已確認且合規的描述</td></tr>
+              <tr><th>調換 H2 段落順序</th><td>維持原架構</td><td>原本的安排是為了優先回應讀者最關心的問題，建議保留搜尋意圖對應順序</td></tr>
+              <tr><th>將 FAQ 改寫成長段落</th><td>維持 FAQ 格式</td><td>問答式內容更方便讀者快速定位問題與答案，較符合這個區塊的閱讀需求</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="sec-sub">（以上為示意範例）</p>
+        <div class="qa">
+          <p><b>第二步：回到文件中，逐一回覆客戶的註解。</b></p>
+          <p>客戶習慣在文件上留言，就在原本的註解下回覆，讓客戶在熟悉的地方直接看到結果。每則回覆可以掌握 3 個重點：</p>
+          <ul>
+            <li><b>處理結果：</b>已修改、調整後修改，或建議維持原稿</li>
+            <li><b>原因：</b>用一兩句說明判斷依據，例如搜尋意圖、資料來源或法規考量</li>
+            <li><b>替代做法：</b>不採用時，說明改用什麼方式處理</li>
+          </ul>
+          <p>先整理過再回覆，每則註解的說法會更一致，也比較不會遺漏。如果客戶習慣看總整理，也可以把表格一併提供。</p>
+        </div>
+        <div class="skillbox">
+          <p><b>另外，和客戶溝通時，也可以特別注意以下 3 件事：</b></p>
+          <ul>
+            <li><b>不採用建議，也要提出替代方案：</b>與其直接說「這樣不適合」，不如說明「建議改用這個方式」，讓客戶知道我們不是單純拒絕，而是有更符合目標的做法。</li>
+            <li><b>遇到重大分歧，先和資深編輯或 PM 討論：</b>不要自己在文件裡來回拉鋸。先整理好情況和自己的判斷，跟資深編輯或 PM 確認回應方向；需要進一步溝通時，再由 PM 評估是否安排會議。</li>
+            <li><b>保留每一輪的修改決策：</b>記錄哪些意見已採用、哪些決定保留原稿。下一輪 AI 建議又推翻上一輪時，就能回頭對照。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="skillcard">
+        <div class="sh"><div class="num">▶︎</div><h3>善用 AI「整理」客戶意見，但別把「判斷」也交給它！</h3></div>
+        <div class="qa">
+          <p>如果客戶提供的 AI 意見實在太長，當然也可以反過來請 AI 幫忙整理！不過，這裡有個重要原則：讓 AI 幫你分類、找出矛盾與整理重點，而不是直接請它評斷客戶的意見對不對。</p>
+          <p>還記得前面提到的特性 2 嗎？AI 可能受到提問方式影響。如果我們直接問：「客戶這些建議是不是不合理？」就可能得到偏向我們立場的回答。因此，建議使用較中立的 Prompt，讓 AI 先負責整理，最後再由編輯進行專業判斷。</p>
+        </div>
+        <div class="prompt"><span class="pl">可直接複製</span>請幫我整理下面這份客戶修改意見。只負責整理，不要評論意見是否正確，也不要自行提出修改建議。
+
+【客戶意見】
+＿＿＿＿＿＿
+
+請依照以下要求整理：
+1. 將修改意見逐條拆開，每條獨立列出。
+2. 為每條意見標註類別：
+   - 客戶說了算：產品、品牌、價格、不能寫的內容
+   - 需要查證：數據、研究、功效、產品規格
+   - SEO 專業判斷：架構、標題、篇幅、FAQ
+   - 超出文章範圍：其他主題或頁面的修改需求
+3. 標出所有涉及數字、研究、功效與成分說法的句子。
+4. 如果不同意見之間存在矛盾，請一併整理出來。
+5. 最後用一句話推測，這份意見背後，客戶最在意的問題可能是什麼，並明確標示這只是推測，不是已確認的客戶需求。</div>
+        <div class="takeaway"><span>📌</span><span>AI 整理完後，哪些要改、哪些該保留、哪些需要再和客戶確認，最終還是由編輯決定。</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="sec"><span class="bar"></span>🔮 未來還可能遇到哪些 AI 審稿狀況？這 6 種情境可以先留意</h2>
+      <p class="sec-sub">隨著 AI 工具越來越普及，客戶使用 AI 審稿、比較文章，甚至直接生成內容的情況，未來可能更加常見。除了前面提到的問題，以下還有 6 種值得提前留意的情境，幫助大家遇到時更快掌握應對方向。</p>
+      <div class="tblwrap">
+        <table class="wrapth col-wide2">
+          <thead><tr><th>未來可能遇到的狀況</th><th>編輯可以怎麼應對？</th></tr></thead>
+          <tbody>
+            <tr><th>客戶的 AI 寫出不合規的功效句子，並認為這樣更吸引人</th><td>先確認相關法規，回覆時附上具體依據，同時提供合規且保有吸引力的替代寫法</td></tr>
+            <tr><th>客戶使用 AI 偵測工具，認為「這篇文章是 AI 寫的」</th><td>AI 偵測工具並非完全可靠，OpenAI 也曾在 2023 年因準確度不足，下架自家的 AI 文字偵測工具。建議將溝通重點放在實際編輯流程、事實查核與第一手素材</td></tr>
+            <tr><th>客戶問「為什麼 ChatGPT 沒有推薦我們？」並要求依照 AI 建議改稿</th><td>這涉及 GEO 與 AI 搜尋的期望管理，建議交由 PM 協助回覆。單篇文章即使經過優化，也無法保證一定會被 AI 引用或推薦</td></tr>
+            <tr><th>客戶自行用 AI 產生文章，希望我們「簡單潤飾一下」</th><td>先確認工作範圍與事實查核責任。AI 產生的內容仍需要人工查證，不能直接視為可發布的完整文章</td></tr>
+            <tr><th>客戶把我們的文章和競品一起交給 AI 評分</th><td>AI 評分可能受到篇幅與文字風格等因素影響，不一定等同實際內容品質。建議回到搜尋意圖、資訊正確性與品牌第一手內容進行比較</td></tr>
+            <tr><th>客戶每一輪都提供新的 AI 意見，導致修改沒有終點</th><td>第一輪就先確認修改優先事項與方向，後續則依照約定的修改輪次處理，超出範圍的需求交由 PM 協調</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="sec"><span class="bar"></span>🔑 最後整理：面對 AI 意見，編輯要做的是判斷，而不是照單全收</h2>
+      <p class="sec-sub">下次收到客戶一長串 AI 修改建議時，先別急著逐條改稿！可以照著以下 5 個步驟處理：</p>
+      <div class="callout">🔸 1. <b>先確認客戶期待：</b>找出大量意見背後，客戶真正重視的 1～3 件事。<br>🔸 2. <b>釐清修改範圍：</b>將意見分成客戶說了算、需要查證、SEO 專業判斷，以及超出文章範圍 4 類。<br>🔸 3. <b>查證資訊正確性：</b>AI 補充的資料先視為待查證，並盡可能用品牌第一手素材增加內容價值。<br>🔸 4. <b>回到 SEO 視角：</b>檢查搜尋意圖、文章架構、關鍵字布局、篇幅與差異化內容，確認修改是否真的有幫助。<br>🔸 5. <b>回覆附上專業理由：</b>清楚說明採用與不採用的原因，提供替代方案，並留下修改紀錄。</div>
+      <div class="takeaway"><span>📌</span><span>AI 可以幫忙找問題、提供不同觀點，但不代表每個建議都值得採用。我們的價值，是知道哪些資訊值得保留、哪些內容需要補強，讓文章同時符合讀者的搜尋需求與客戶的品牌目標。面對越來越多的 AI 修改意見，編輯真正需要強化的，正是這份判斷力。</span></div>
+    </section>
+
+    <section>
+      <h2 class="sec"><span class="bar"></span>📎 參考資料</h2>
+      <div class="srcs">
+        <a href="https://openai.com/index/why-language-models-hallucinate/" target="_blank" rel="noopener"><span class="dot">▸</span>Why language models hallucinate（2025-09-05）<span class="site">OpenAI</span></a>
+        <a href="https://arxiv.org/abs/2509.04664" target="_blank" rel="noopener"><span class="dot">▸</span>Why Language Models Hallucinate（Kalai 等，2025）<span class="site">arXiv</span></a>
+        <a href="https://retractionwatch.com/2026/05/07/one-in-277-pubmed-indexed-papers-in-2026-shows-fabricated-references-says-analysis/" target="_blank" rel="noopener"><span class="dot">▸</span>One in 277 PubMed-indexed papers in 2026 shows fabricated references, says analysis（2026-05-07，報導 Topaz 等人刊於 The Lancet 的稽核）<span class="site">Retraction Watch</span></a>
+        <a href="https://developers.google.com/search/docs/fundamentals/using-gen-ai-content" target="_blank" rel="noopener"><span class="dot">▸</span>Google Search's guidance on using generative AI content on your website（2026-10-01 更新）<span class="site">Google Search Central</span></a>
+        <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" target="_blank" rel="noopener"><span class="dot">▸</span>Creating helpful, reliable, people-first content（2026-10-05 更新）<span class="site">Google Search Central</span></a>
+        <a href="https://arxiv.org/abs/2608.01017" target="_blank" rel="noopener"><span class="dot">▸</span>Why LLMs Give In: Conversational Factors and Reasoning Behind Medical Sycophancy（Ping 等，2026）<span class="site">arXiv</span></a>
+        <a href="https://arxiv.org/abs/2404.13076" target="_blank" rel="noopener"><span class="dot">▸</span>LLM Evaluators Recognize and Favor Their Own Generations（Panickssery、Bowman、Feng）<span class="site">NeurIPS 2024</span></a>
+        <a href="https://arxiv.org/abs/2306.05685" target="_blank" rel="noopener"><span class="dot">▸</span>Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena（Zheng 等）<span class="site">NeurIPS 2023</span></a>
+        <a href="https://arxiv.org/abs/2609.19420" target="_blank" rel="noopener"><span class="dot">▸</span>Use and Effects of LLMs in Peer Review: A Randomized Experiment and Survey at ICML 2026（Kim 等，2026）<span class="site">arXiv</span></a>
+        <a href="https://hbr.org/2025/09/ai-generated-workslop-is-destroying-productivity" target="_blank" rel="noopener"><span class="dot">▸</span>AI-Generated "Workslop" Is Destroying Productivity（2025-09-22）<span class="site">Harvard Business Review</span></a>
+        <a href="https://searchenginejournal.com/openai-shuts-down-flawed-ai-detector/492565" target="_blank" rel="noopener"><span class="dot">▸</span>OpenAI Shuts Down Flawed AI Detector（2023）<span class="site">Search Engine Journal</span></a>
+        <a href="https://www.forrester.com/press-newsroom/forrester-nine-in-10-us-marketing-agencies-use-ai-to-cut-costs-at-the-expense-of-creativity/" target="_blank" rel="noopener"><span class="dot">▸</span>Nine In 10 US Marketing Agencies Use AI To Cut Costs At The Expense Of Creativity（2026-06-24）<span class="site">Forrester</span></a>
+        <a href="https://www.orbitmedia.com/blog/blogging-statistics/" target="_blank" rel="noopener"><span class="dot">▸</span>Blogging Statistics 2026: What 1,042 Content Marketers Told Us About What Works（Andy Crestodina，2026-09-08）<span class="site">Orbit Media</span></a>
+      </div>
+    </section>
+
+    <a class="poll pollcta" style="margin-top:44px" href="https://wellyseo.slack.com/archives/C0BE8QB42P7" target="_blank" rel="noopener">
+      <h2>🙌 本週接力：收到 AI 修改意見時，你會怎麼接招？</h2>
+      <p>這次想邀請大家一起交流，不論你已經有相關經驗，還是目前尚未遇過，都歡迎分享自己的想法：</p>
+      <p style="margin-top:10px"><b>如果你遇過客戶的 AI 審稿挑戰，可以分享實際經驗：</b><br>客戶曾提出哪些讓你印象深刻的 AI 修改意見？當時怎麼處理？最後結果如何？</p>
+      <p style="margin-top:10px"><b>如果你還沒遇過，可以分享你的想法：</b><br>「我覺得最難處理的會是＿＿＿＿這種意見，如果是我的話，可能會＿＿＿＿（判斷方式、應對辦法）。」</p>
+      <p style="margin-top:10px">不一定要有標準答案～無論是實際處理過的案例，還是目前想到的應對方式，都歡迎提出來交流，說不定你的想法，剛好就能幫助其他夥伴解決下一次遇到的問題！</p>
       <span class="slackcta"><span class="ico">💬</span> 到 #ai-yoyo-tv 留言接力</span>
     </a>
   </div>
@@ -1652,8 +2045,15 @@
       var ep = btn.getAttribute('data-ep');
       epbtns.forEach(function(b){ b.classList.toggle('on', b === btn); });
       episodes.forEach(function(e){ e.classList.toggle('on', e.getAttribute('data-ep') === ep); });
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+  });
+
+  // 往期回顧展開／收合
+  var pt = document.getElementById('pasttoggle');
+  if (pt) pt.addEventListener('click', function(){
+    var nav = document.getElementById('epnav');
+    var open = nav.classList.toggle('open');
+    pt.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
 
   // 分頁（tabs）切換
